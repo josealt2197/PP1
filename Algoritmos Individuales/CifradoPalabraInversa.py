@@ -8,6 +8,7 @@
         - No hay.
 
 '''
+
 def cifrar_descifrar_PalabraInversa():
     cadena=input("\nIngrese la frase/palabra que desea cifrar: ")
     palabras=cadena.split()

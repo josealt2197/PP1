@@ -8,7 +8,7 @@
 
 '''
 def cifrar_CodigoTelefonico():
-    cadena=input("\nIngrese la frase/palabra que desea cifrar: ")
+    cadena=input("Ingrese la frase/palabra que desea cifrar: ")
     cadena=cadena.lower()
     cadenaCifrada = ""
     indice = 0
@@ -73,7 +73,7 @@ def cifrarLetra_CodigoTelefonico(letra):
 
 '''
 def descifrar_CodigoTelefonico():
-    cadena=input("\nIngrese la frase/palabra que desea descifrar: ")
+    cadena=input("Ingrese la frase/palabra que desea descifrar: ")
     cadena=cadena.lower()
     cadenaDescifrada = ""
     letraCifrada=""

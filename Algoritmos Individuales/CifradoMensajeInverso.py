@@ -9,7 +9,7 @@
 
 '''
 def cifrar_descifrar_PalabraInversa():
-    cadena=input("\nIngrese la frase/palabra que desea descifrar: ")
+    cadena=input("Ingrese la frase/palabra que desea descifrar: ")
     cadenaDescifrada=cadena[::-1]
     indice = 0
 

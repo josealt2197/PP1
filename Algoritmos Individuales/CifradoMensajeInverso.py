@@ -8,7 +8,7 @@
         - No hay.
 
 '''
-def cifrar_descifrar_PalabraInversa():
+def cifrar_descifrar_MensajeInverso():
     cadena=input("Ingrese la frase/palabra que desea descifrar: ")
     cadenaDescifrada=cadena[::-1]
     indice = 0

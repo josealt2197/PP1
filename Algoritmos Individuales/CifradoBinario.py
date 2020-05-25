@@ -176,3 +176,61 @@ def menuCifradoBinario():
         menuCifradoBinario()
         
 menuCifradoBinario() 
+
+
+
+'''|********************************************************************************************|'''
+
+
+def descifrar_CodigoBinario():
+    binario = ""
+    cadena = input("Ingrese la combinación binaria que desea descifrar: ")
+    resultado = ""
+    while (cadena != ""):
+
+        if (cadena[0] == "*"):
+            resultado = resultado + " "
+            cadena = cadena[2:]
+        else:
+            binario = cadena[0:5]
+            resultado = resultado + sacarLetra(binario)
+            cadena = cadena[6:]
+
+    print(resultado)
+
+
+def sacarLetra(binario):
+    abecedario = "abcdefghijklmnopqrstuvwxyz"
+    binario = str(binario)
+    letra = abecedario[int(binario, 2)]
+    return letra
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

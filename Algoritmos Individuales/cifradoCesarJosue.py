@@ -6,10 +6,10 @@ def cifradoCesar():
     contandor = 0
     resultado=""
     cadena = input("ingrese la oración que desea decifrar: ")
-    if (esNumeroEntero(cadena) and esNumeroEntero(cadena)):
+    if (esNumeroEntero(cadena) ):
         print("Debe ingresar palabras")
         return cifradoCesar()
-    cadena = cadena.lower()
+    cadena = cadena.upper()
 
     while (contandor<len(cadena)):
         if(cadena[contandor]== " " ):
@@ -31,7 +31,7 @@ def desCifradoCesar():
     if (esNumeroEntero(cadena) and esNumeroEntero(cadena)):
         print("Debe ingresar palabras")
         return cifradoCesar()
-    cadena = cadena.lower()
+    cadena = cadena.upper()
 
     while (contandor<len(cadena)):
         if(cadena[contandor]== " " ):
@@ -47,41 +47,41 @@ def desCifradoCesar():
 
 
 def cifrarLetra(letra):
-    abecedario = "abcdefghijklmnopqrstuwxyz"
+    abecedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     i = 0
     tamano = len(abecedario)
     while (i < tamano):
         if (abecedario[i] == letra and
-                abecedario[i] != 'x' and
-                abecedario[i] != 'y' and
-                abecedario[i] != 'z'):
+                abecedario[i] != 'X' and
+                abecedario[i] != 'Y' and
+                abecedario[i] != 'Z'):
             return abecedario[i + 3]
-        elif (abecedario[i] == 'x'):
-            return 'a'
-        elif (abecedario[i] == 'y'):
-            return 'b'
-        elif (abecedario[i] == 'z'):
-            return 'c'
+        elif (abecedario[i] == 'X'):
+            return 'A'
+        elif (abecedario[i] == 'Y'):
+            return 'B'
+        elif (abecedario[i] == 'Z'):
+            return 'C'
         i += 1
 
 
 
 def descifrarLetra(letra):
-    abecedario = "abcdefghijklmnopqrstuwxyz"
+    abecedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     i = 0
     tamano = len(abecedario)
     while (i < tamano):
         if (abecedario[i] == letra and
-                abecedario[i] != 'x' and
-                abecedario[i] != 'y' and
-                abecedario[i] != 'z'):
+                abecedario[i] != 'X' and
+                abecedario[i] != 'Y' and
+                abecedario[i] != 'Z'):
             return abecedario[i - 3]
-        elif (abecedario[i] == 'x'):
-            return 'a'
-        elif (abecedario[i] == 'y'):
-            return 'b'
-        elif (abecedario[i] == 'z'):
-            return 'c'
+        elif (abecedario[i] == 'A'):
+            return 'X'
+        elif (abecedario[i] == 'B'):
+            return 'Y'
+        elif (abecedario[i] == 'C'):
+            return 'Z'
         i += 1
 
 def esNumeroEntero(pNumero):

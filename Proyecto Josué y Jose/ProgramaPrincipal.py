@@ -1,4 +1,23 @@
-#--------------------------------------------Funciones Adicionales----------------------------------------------------------------------------
+'''
+****Guía de Código Fuente***
+
+ -- Funciones Adicionales...........................~ln:20
+ -- Algoritmos de Cirado
+    -- Cifrado/Descifrado César....................~ln:124
+    -- Cifrado/Descifrado por llave................~ln:175
+    -- Cifrado/Descifrado Sustitución Vigenére.....~ln:250
+    -- Cifrado/Descifrado RSA......................~ln:316
+    -- Cifrado/Descifrado Palabra inversa..........~ln:432
+    -- Cifrado/Descifrado Mensaje inverso..........~ln:457
+    -- Cifrado/Descifrado Telefonico...............~ln:475
+    -- Cifrado/Descifrado Binario..................~ln:624
+-- Validacion de Entradas..........................~ln:705
+-- Menús de Navegación
+    -- Menu Cifrado................................~ln:787
+    -- Menu Descifrado.............................~ln:873
+    -- Menu Principal..............................~ln:962
+'''
+# --------------------------------------------Funciones Adicionales----------------------------------------------------------------------------
 
 '''
 Determinar si un numero es primo 
@@ -11,14 +30,15 @@ Determinar si un numero es primo
         - El numero debe ser un entero positivo mayor a 1
 '''
 def esPrimo(num):
-    divisor=2
+    divisor = 2
 
-    while(divisor<num):
-        if(num%divisor==0):
+    while (divisor < num):
+        if (num % divisor == 0):
             return False
-        divisor= divisor + 1
+        divisor = divisor + 1
 
     return True
+
 
 '''
 Calcular el Maximo Común Divisor de dos numeros.
@@ -30,14 +50,15 @@ Calcular el Maximo Común Divisor de dos numeros.
         - No hay.
 '''
 def calcularMCD(a, b):
-    divisor = min(a,b)
+    divisor = min(a, b)
 
-    while(divisor>1):
-        if(a%divisor==0 and b%divisor==0):
+    while (divisor > 1):
+        if (a % divisor == 0 and b % divisor == 0):
             break
-        divisor-=1
+        divisor -= 1
 
     return divisor
+
 
 '''
     Entradas:
@@ -51,13 +72,14 @@ def calcularMCD(a, b):
 '''
 def buscarNumero(cadena):
     indice = 0
-    
-    while(indice != len(cadena)):
-       if(esEntero(cadena[indice])==True):
-           return True
-       indice+=1
 
-    return False  
+    while (indice != len(cadena)):
+        if (esEntero(cadena[indice]) == True):
+            return True
+        indice += 1
+
+    return False
+
 
 '''
     Entradas:
@@ -75,8 +97,8 @@ def esEntero(pNum):
         return True
     except:
         return False
-    
-        
+
+
 '''
     Entradas:
         - Un caracter y una cadena de caracteres
@@ -91,38 +113,40 @@ def esEntero(pNum):
 def buscarCaracter(cadena, caracter):
     indice = 0
 
-    while(indice != len(cadena)):
-       if(cadena[indice]==caracter):
-           return indice
-       indice+=1
+    while (indice != len(cadena)):
+        if (cadena[indice] == caracter):
+            return indice
+        indice += 1
 
     return -1
 
-#--------------------------------------------Cifrado/Descifrado Cesar----------------------------------------------------------------------------
+
+# --------------------------------------------Cifrado/Descifrado Cesar----------------------------------------------------------------------------
+
 '''
     Entradas:
-        - Una cadena de carateres en lenguaje natural
         - Un parametro "opcion", el cual determina si se debe realizar un procesos de "cifrado" o "descrifrado"
+        - Una cadena de carateres en lenguaje natural
     Salida:
         - El valor de la cadena cifrada o descifrada con el algoritmo de cifrado César
     Restricciones:
         - No hay.
 
 '''
-def cifrarDescifrar_CodigoCesar(operacion):
-    cadena=input("Ingrese la frase/palabra que desea cifrar: ")
-    cadena=cadena.upper()
+def cifrarDescifrar_CodigoCesar(operacion, cadena):
+    cadena = cadena.upper()
     cadenaResultante = ""
     indice = 0
 
-    while(indice != len(cadena)):
-        cadenaResultante = cadenaResultante + cifrarDescifrarLetra_CodigoCesar(cadena[indice],operacion)
-        indice+=1
+    while (indice != len(cadena)):
+        cadenaResultante = cadenaResultante + cifrarDescifrarLetra_CodigoCesar(cadena[indice], operacion)
+        indice += 1
 
-    if(operacion=="descifrado"):
-        cadenaResultante=cadenaResultante.lower()
+    if (operacion == "descifrado"):
+        cadenaResultante = cadenaResultante.lower()
 
     return cadenaResultante
+
 
 '''
     Entradas:
@@ -138,8 +162,8 @@ def cifrarDescifrarLetra_CodigoCesar(letra, operacion):
     letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     letrasDesplazadas = "DEFGHIJKLMNOPQRSTUVWXYZABC"
 
-    if(buscarCaracter(letras, letra)!=-1):           
-        if(operacion=="cifrado"):
+    if (buscarCaracter(letras, letra) != -1):
+        if (operacion == "cifrado"):
             letraCifrada_Descifrada = letrasDesplazadas[buscarCaracter(letras, letra)]
         else:
             letraCifrada_Descifrada = letras[buscarCaracter(letrasDesplazadas, letra)]
@@ -147,7 +171,8 @@ def cifrarDescifrarLetra_CodigoCesar(letra, operacion):
     else:
         return letra
 
-#--------------------------------------------Cifrado Por Llave----------------------------------------------------------------------------
+
+# --------------------------------------------Cifrado/Descifrado Por Llave----------------------------------------------------------------------------
 '''
     Entradas:
         - Una cadena de carateres en lenguaje natural
@@ -157,36 +182,34 @@ def cifrarDescifrarLetra_CodigoCesar(letra, operacion):
         - No hay.
 
 '''
-def cifrarDescifrar_CodigoPorLlave(operacion):
-    cadena=input("Ingrese la frase/palabra que desea cifrar: ")
-    clave=input("Digite la clave requerida para cifrar la palabra/frase: ")
-    if(len(clave)<= 1):
+def cifrarDescifrar_CodigoPorLlave(operacion, cadena):
+    clave = input("Digite la clave requerida para cifrar la palabra/frase: ")
+    if (len(clave) <= 1):
         print("Se ha producido un ERROR: La clave debe estar compuesta por al menos dos caracteres")
-    elif(buscarNumero(cadena)==True):
-        print("Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos o enteros")
-    else:       
-        cadena=cadena.lower()
+    else:
+        cadena = cadena.lower()
         cadenaResultante = ""
         letraResultante = ""
         indice = 0
         indiceClave = 0
-        
-        while(indice != len(cadena)):
-            if(cadena[indice].isalpha()==True):
-                letraResultante=cifrarDescifrarLetra_CodigoPorLlave(cadena[indice],operacion,clave[indiceClave])
-                indiceClave+=1
-            elif(cadena[indice]==" "):
-                letraResultante=cadena[indice]
-            else:
-                letraResultante=" "
 
-            if(indiceClave==(len(clave))):
-                indiceClave=0
-                
+        while (indice != len(cadena)):
+            if (cadena[indice].isalpha() == True):
+                letraResultante = cifrarDescifrarLetra_CodigoPorLlave(cadena[indice], operacion, clave[indiceClave])
+                indiceClave += 1
+            elif (cadena[indice] == " "):
+                letraResultante = cadena[indice]
+            else:
+                letraResultante = " "
+
+            if (indiceClave == (len(clave))):
+                indiceClave = 0
+
             cadenaResultante = cadenaResultante + letraResultante
-            indice+=1
-            
+            indice += 1
+
         return cadenaResultante
+
 
 '''
     Entradas:
@@ -200,31 +223,31 @@ def cifrarDescifrar_CodigoPorLlave(operacion):
 def cifrarDescifrarLetra_CodigoPorLlave(letra, operacion, clave):
     posLetraCifrada_Descifrada = 0
     letraCifrada_Descifrada = ""
-    letras = "abcdefghijklmnopqrstuvwxyz"    
+    letras = "abcdefghijklmnopqrstuvwxyz"
 
-    if(buscarCaracter(letras, letra)!=-1 and buscarCaracter(letras, clave)!=-1):
+    if (buscarCaracter(letras, letra) != -1 and buscarCaracter(letras, clave) != -1):
 
-        if(operacion=="cifrado"):
-            posLetraCifrada_Descifrada = (buscarCaracter(letras, letra)+1)+(buscarCaracter(letras, clave)+1)
+        if (operacion == "cifrado"):
+            posLetraCifrada_Descifrada = (buscarCaracter(letras, letra) + 1) + (buscarCaracter(letras, clave) + 1)
 
-            if(posLetraCifrada_Descifrada>26):
-                posLetraCifrada_Descifrada=posLetraCifrada_Descifrada-26
+            if (posLetraCifrada_Descifrada > 26):
+                posLetraCifrada_Descifrada = posLetraCifrada_Descifrada - 26
         else:
-            posLetraCifrada_Descifrada = (buscarCaracter(letras, letra)+1)-(buscarCaracter(letras, clave)+1)
-            
-            if(posLetraCifrada_Descifrada<0):
-                posLetraCifrada_Descifrada=posLetraCifrada_Descifrada+26
+            posLetraCifrada_Descifrada = (buscarCaracter(letras, letra) + 1) - (buscarCaracter(letras, clave) + 1)
 
-            letraCifrada_Descifrada = letras[posLetraCifrada_Descifrada-1]
+            if (posLetraCifrada_Descifrada < 0):
+                posLetraCifrada_Descifrada = posLetraCifrada_Descifrada + 26
 
+            letraCifrada_Descifrada = letras[posLetraCifrada_Descifrada - 1]
 
-        letraCifrada_Descifrada = letras[posLetraCifrada_Descifrada-1]
-                                                                         
+        letraCifrada_Descifrada = letras[posLetraCifrada_Descifrada - 1]
+
         return letraCifrada_Descifrada
     else:
         return letra
 
-#--------------------------------------------Cifrado por Sustitucion Vigenére------------------------------------------------------------
+
+# --------------------------------------------Cifrado/Descifrado por Sustitucion Vigenére------------------------------------------------------------
 '''
     Entradas:
         - Una cadena de carateres 
@@ -235,34 +258,34 @@ def cifrarDescifrarLetra_CodigoPorLlave(letra, operacion, clave):
         - No hay.
 
 '''
-def cifrarDescifrar_SustitucionVigenere(operacion):
-    cadena=input("Ingrese la frase/palabra que desea cifrar/descifrar: ")
-    clave=input("Digite la clave requerida para cifrar/descifrar la palabra/frase: ")
-    if(clave=="" or len(clave)!=2):
+def cifrarDescifrar_SustitucionVigenere(operacion, cadena):
+    clave = input("Digite la clave requerida para cifrar/descifrar la palabra/frase: ")
+    if (clave == "" or len(clave) != 2):
         print("Se ha producido un ERROR: La clave debe estar compuesta por dos dígitos")
     else:
-        if(esEntero(clave)==True):
-            cadena=cadena.lower()
-            clave1=int(clave[0])
-            clave2=int(clave[1])
+        if (esEntero(clave) == True):
+            cadena = cadena.lower()
+            clave1 = int(clave[0])
+            clave2 = int(clave[1])
             cadenaResultante = ""
             letraResultante = ""
             indice = 0
 
-            while(indice != len(cadena)):
-                if(cadena[indice]==" "):
+            while (indice != len(cadena)):
+                if (cadena[indice] == " "):
                     letraResultante = " "
-                elif((indice+1)%2!=0):
-                    letraResultante=cifrarDescifrarLetra_CodigoVigenere(cadena[indice],operacion,clave1)
+                elif ((indice + 1) % 2 != 0):
+                    letraResultante = cifrarDescifrarLetra_CodigoVigenere(cadena[indice], operacion, clave1)
                 else:
-                    letraResultante=cifrarDescifrarLetra_CodigoVigenere(cadena[indice],operacion,clave2)
-                    
+                    letraResultante = cifrarDescifrarLetra_CodigoVigenere(cadena[indice], operacion, clave2)
+
                 cadenaResultante = cadenaResultante + letraResultante
-                indice+=1
+                indice += 1
 
             return cadenaResultante
         else:
             print("Se ha producido un ERROR: Los digitos de la clave deben ser valores enteros")
+
 
 '''
     Entradas:
@@ -279,19 +302,18 @@ def cifrarDescifrarLetra_CodigoVigenere(letra, operacion, clave):
     letraCifrada_Descifrada = ""
     letras = "abcdefghijklmnopqrstuvwxyzabcdefghi"
 
-
-    if(buscarCaracter(letras, letra)!=-1):
-        if(operacion=="cifrado"):
-            letraCifrada_Descifrada = letras[(buscarCaracter(letras, letra)+clave)]
+    if (buscarCaracter(letras, letra) != -1):
+        if (operacion == "cifrado"):
+            letraCifrada_Descifrada = letras[(buscarCaracter(letras, letra) + clave)]
         else:
-            letraCifrada_Descifrada = letras[(buscarCaracter(letras, letra)-clave)]
-        
+            letraCifrada_Descifrada = letras[(buscarCaracter(letras, letra) - clave)]
+
         return letraCifrada_Descifrada
     else:
         return letra
 
 
-#--------------------------------------------Cifrado RSA----------------------------------------------------------------------------
+# --------------------------------------------Cifrado/Descifrado RSA----------------------------------------------------------------------------
 from random import randint
 
 '''
@@ -304,46 +326,46 @@ Obtener las llaves publica y privada para el cifrado RSA
         - Ninguna
 '''
 def generarLlavesRSA():
-    llavePublica=""
-    llavePrivada=""
-    p=randint(1000,10000)
-    q=randint(1000,10000)
-    n=0
-    fiDeN=0
-    e=0
-    d=0
+    llavePublica = ""
+    llavePrivada = ""
+    p = randint(1000, 10000)
+    q = randint(1000, 10000)
+    n = 0
+    fiDeN = 0
+    e = 0
+    d = 0
 
-    #Paso 1
-    while(esPrimo(p)!=True and esPrimo(p)!=True):
-        p=randint(1000,10000)
-        q=randint(1000,10000)
+    # Paso 1
+    while (esPrimo(p) == False and esPrimo(p) == False):
+        p = randint(1000, 10000)
+        q = randint(1000, 10000)
 
-    print("p= "+str(p))
-    print("q= "+str(q))
-    
-    #Paso 2
-    n=p*q
-    print("n= "+str(n))
-    
-    #Paso 3
-    fiDeN=(p-1)*(q-1)
-    print("fiDeN= "+str(fiDeN))
-    
-    #Paso 4
-    e=randint(0,fiDeN)
-    while(calcularMCD(fiDeN,e)!=1):
-        e=randint(0,fiDeN)
-    print("e= "+str(e))
-    
-    #Paso 5
-    d=randint(0,1000)   
-    while(((d*e)-1)%fiDeN!=0):
-        d=randint(0,1000)
-    print("d= "+str(d))
+    print("p= " + str(p))
+    print("q= " + str(q))
+
+    # Paso 2
+    n = p * q
+    print("n= " + str(n))
+
+    # Paso 3
+    fiDeN = (p - 1) * (q - 1)
+    print("fiDeN= " + str(fiDeN))
+
+    # Paso 4
+    e = randint(0, fiDeN)
+    while (calcularMCD(fiDeN, e) != 1):
+        e = randint(0, fiDeN)
+    print("e= " + str(e))
+
+    # Paso 5
+    d = randint(0, 1000)
+    while (((d * e) - 1) % fiDeN != 0):
+        d = randint(0, 1000)
+    print("d= " + str(d))
 
     print("Llaves generadas: ")
-    print("Publica: ("+str(n)+", "+str(e)+")")
-    print("Privada: ("+str(n)+", "+str(d)+")")
+    print("Publica: (" + str(n) + ", " + str(e) + ")")
+    print("Privada: (" + str(n) + ", " + str(d) + ")")
 
 
 '''
@@ -355,25 +377,27 @@ def generarLlavesRSA():
         - No hay.
 
 '''
-def cifrar_CodigoRSA():
-    cadena=input("Ingrese la frase/palabra que desea cifrar: ")
+def cifrar_CodigoRSA(cadena):
     print("Digite la clave publica requerida para cifrar la frase/palabra")
-    n=int(input("-->Ingrese el primer valor de la clave: "))
-    e=int(input("-->Ingrese el segundo valor de la clave: "))
+    n = int(input("-->Ingrese el primer valor de la clave: "))
+    e = int(input("-->Ingrese el segundo valor de la clave: "))
+    d = 2753
     cadenaResultante = ""
     letraResultante = ""
     indice = 0
-    
-    while(indice != len(cadena)):
-        if(cadena[indice].isascii()==True):
-            letraResultante=str((ord(cadena[indice])**e)%n)
-        else:
-            letraResultante=cadena[indice]
 
-        cadenaResultante = cadenaResultante + "*"+ letraResultante
-        indice+=1
-        
-    return cadenaResultante[1:]
+    while (indice != len(cadena)):
+        if (cadena[indice].isascii() == True):
+            letraResultante = str((ord(cadena[indice]) ** e) % n)
+        else:
+            letraResultante = cadena[indice]
+
+        cadenaResultante = cadenaResultante + "*" + letraResultante
+        indice += 1
+
+    return cadenaResultante[1:] 
+        #+ "\nLlave Pública: ("+str(n)+","+str(e)+")" + "\nLlave Privada: ("+str(n)+","+str(d)+")")
+
 
 '''
     Entradas:
@@ -384,8 +408,7 @@ def cifrar_CodigoRSA():
         - No hay.
 
 '''
-def descifrar_CodigoRSA():
-    cadena=input("Ingrese la frase/palabra que desea descifrar: ")
+def descifrar_CodigoRSA(cadena):
     print("Digite la clave privada requerida para descifrar la frase/palabra")
     n=int(input("-->Ingrese el primer valor de la clave: "))
     d=int(input("-->Ingrese el segundo valor de la clave: "))
@@ -405,7 +428,8 @@ def descifrar_CodigoRSA():
         
     return cadenaResultante
 
-#--------------------------------------------Cifrado Palabra Inversa----------------------------------------------------------------------
+
+# --------------------------------------------Cifrado/Descifrado Palabra Inversa----------------------------------------------------------------------
 '''
     Entradas:
         - Una cadena de carateres 
@@ -416,21 +440,21 @@ def descifrar_CodigoRSA():
         - No hay.
 
 '''
-def cifrar_descifrar_PalabraInversa():
-    cadena=input("Ingrese la frase/palabra que desea cifrar: ")
-    palabras=cadena.split()
-    palabra=""
-    cadenaCifrada=""
+def cifrar_descifrar_PalabraInversa(cadena):
+    palabras = cadena.split()
+    palabra = ""
+    cadenaCifrada = ""
     contador = 0
 
-    while(contador<len(palabras)):
-        palabra=palabras[contador]
-        cadenaCifrada=cadenaCifrada+palabra[::-1]+" "
-        contador+=1
-        
+    while (contador < len(palabras)):
+        palabra = palabras[contador]
+        cadenaCifrada = cadenaCifrada + palabra[::-1] + " "
+        contador += 1
+
     return cadenaCifrada
 
-#--------------------------------------------Cifrado Mensaje Inverso----------------------------------------------------------------------------
+
+# --------------------------------------------Cifrado/Descifrado Mensaje Inverso----------------------------------------------------------------------------
 '''
     Entradas:
         - Una cadena de carateres 
@@ -441,14 +465,14 @@ def cifrar_descifrar_PalabraInversa():
         - No hay.
 
 '''
-def cifrarDescifrar_MensajeInverso():
-    cadena=input("Ingrese la frase/palabra que desea descifrar: ")
-    cadenaDescifrada=cadena[::-1]
+def cifrarDescifrar_MensajeInverso(cadena):
+    cadenaDescifrada = cadena[::-1]
     indice = 0
 
     return cadenaDescifrada
 
-#--------------------------------------------Cifrado Código Telefónico----------------------------------------------------------------------------
+
+# --------------------------------------------Cifrado/Descifrado Código Telefónico----------------------------------------------------------------------------
 '''
     Entradas:
         - Una cadena de carateres en lenguaje natural
@@ -458,17 +482,17 @@ def cifrarDescifrar_MensajeInverso():
         - No hay.
 
 '''
-def cifrar_CodigoTelefonico():
-    cadena=input("Ingrese la frase/palabra que desea cifrar: ")
-    cadena=cadena.lower()
+def cifrar_CodigoTelefonico(cadena):
+    cadena = cadena.lower()
     cadenaCifrada = ""
     indice = 0
 
-    while(indice != len(cadena)):
+    while (indice != len(cadena)):
         cadenaCifrada = cadenaCifrada + cifrarLetra_CodigoTelefonico(cadena[indice])
-        indice+=1
+        indice += 1
 
     return cadenaCifrada
+
 
 '''
     Entradas:
@@ -489,30 +513,31 @@ def cifrarLetra_CodigoTelefonico(letra):
     fin = 3
     letras = "abcdefghijklmnopqrstuvwxyz"
 
-    if(buscarCaracter(letras, letra)!=-1):
-        while(inicio < 25):
+    if (buscarCaracter(letras, letra) != -1):
+        while (inicio < 25):
 
-            bloque=letras[inicio:fin]
+            bloque = letras[inicio:fin]
 
-            if(buscarCaracter(bloque, letra)==-1):
-                if(numeroAsignado==5 or numeroAsignado==7):
-                    inicio+=3
-                    fin+=4
-                elif(numeroAsignado==6):
-                    inicio+=4
-                    fin+=3
+            if (buscarCaracter(bloque, letra) == -1):
+                if (numeroAsignado == 5 or numeroAsignado == 7):
+                    inicio += 3
+                    fin += 4
+                elif (numeroAsignado == 6):
+                    inicio += 4
+                    fin += 3
                 else:
-                    inicio+=3
-                    fin+=3
+                    inicio += 3
+                    fin += 3
 
-                numeroAsignado+=1
+                numeroAsignado += 1
             else:
-                return str(numeroAsignado+1)+str(buscarCaracter(bloque, letra)+1)
+                return str(numeroAsignado + 1) + str(buscarCaracter(bloque, letra) + 1)
 
-    elif(letra==" "):
+    elif (letra == " "):
         return "*"
     else:
         return letra
+
 
 '''
     Entradas:
@@ -523,29 +548,29 @@ def cifrarLetra_CodigoTelefonico(letra):
         - No hay.
 
 '''
-def descifrar_CodigoTelefonico():
-    cadena=input("Ingrese la frase/palabra que desea descifrar: ")
-    cadena=cadena.lower()
+def descifrar_CodigoTelefonico(cadena):
+    cadena = cadena.lower()
     cadenaDescifrada = ""
-    letraCifrada=""
+    letraCifrada = ""
     indice = 0
 
-    while(indice != len(cadena)):
+    while (indice != len(cadena)):
 
-        if(cadena[indice]=="*"):
+        if (cadena[indice] == "*"):
             cadenaDescifrada = cadenaDescifrada + " "
-            
-        elif(esEntero(cadena[indice])==True):
-            letraCifrada=letraCifrada+cadena[indice]
-            if(len(letraCifrada)==2):
+
+        elif (esEntero(cadena[indice]) == True):
+            letraCifrada = letraCifrada + cadena[indice]
+            if (len(letraCifrada) == 2):
                 cadenaDescifrada = cadenaDescifrada + descifrarLetra_CodigoTelefonico(letraCifrada)
-                letraCifrada=""
+                letraCifrada = ""
         else:
             cadenaDescifrada = cadenaDescifrada + cadena[indice]
-        
-        indice+=1
+
+        indice += 1
 
     return cadenaDescifrada
+
 
 '''
     Entradas:
@@ -562,40 +587,41 @@ def descifrarLetra_CodigoTelefonico(letraCifrada):
     numeroAsignado = ""
     bloque = ""
     letras = "abcdefghijklmnopqrstuvwxyz"
-    #numeros = "23456789"
+    # numeros = "23456789"
 
-    #Recuperar Numero Asignado
+    # Recuperar Numero Asignado
     numeroAsignado = letraCifrada[0]
-    #Recuperar Numero de Letra 
+    # Recuperar Numero de Letra
     codigoLetra = letraCifrada[1]
-    
-    if(numeroAsignado=="2"):
-        bloque=letras[0:3]
-        
-    elif(numeroAsignado=="3"):
-        bloque=letras[3:6]
 
-    elif(numeroAsignado=="4"):
-        bloque=letras[6:9]
+    if (numeroAsignado == "2"):
+        bloque = letras[0:3]
 
-    elif(numeroAsignado=="5"):
-        bloque=letras[9:12]
+    elif (numeroAsignado == "3"):
+        bloque = letras[3:6]
 
-    elif(numeroAsignado=="6"):
-        bloque=letras[12:15]
+    elif (numeroAsignado == "4"):
+        bloque = letras[6:9]
 
-    elif(numeroAsignado=="7"):
-        bloque=letras[15:19]
+    elif (numeroAsignado == "5"):
+        bloque = letras[9:12]
 
-    elif(numeroAsignado=="8"):
-        bloque=letras[19:22]
+    elif (numeroAsignado == "6"):
+        bloque = letras[12:15]
+
+    elif (numeroAsignado == "7"):
+        bloque = letras[15:19]
+
+    elif (numeroAsignado == "8"):
+        bloque = letras[19:22]
 
     else:
-        bloque=letras[22:25]
-    
-    return bloque[int(codigoLetra)-1]
-    
-#--------------------------------------------Cifrado Binario----------------------------------------------------------------------------
+        bloque = letras[22:25]
+
+    return bloque[int(codigoLetra) - 1]
+
+
+# --------------------------------------------Cifrado Binario----------------------------------------------------------------------------
 '''
     Entradas:
         - Una cadena de carateres en lenguaje natural
@@ -605,30 +631,26 @@ def descifrarLetra_CodigoTelefonico(letraCifrada):
         - No hay.
 
 '''
-def cifrar_CodigoBinario():
-    cadena=input("Ingrese la frase/palabra que desea cifrar: ")
-    if(buscarNumero(cadena)==True):
-        print("Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos o símbolos")
-        #Falta validar que no contenga simbolos
-    else:       
-        cadena=cadena.lower()
-        cadenaResultante = ""
-        letraResultante = ""
-        indice = 0
-        indiceClave = 0
-        
-        while(indice != len(cadena)):
-            if(cadena[indice].isalpha()==True):
-                letraResultante=" "+cifrarLetra_CodigoBinario(cadena[indice])
-            elif(cadena[indice]==" "):
-                letraResultante=" *"
-            else:
-                letraResultante=cadena[indice]
+def cifrar_CodigoBinario(cadena):
+    cadena = cadena.lower()
+    cadenaResultante = ""
+    letraResultante = ""
+    indice = 0
+    indiceClave = 0
 
-            cadenaResultante = cadenaResultante + letraResultante
-            indice+=1
-            
-        return cadenaResultante
+    while (indice != len(cadena)):
+        if (cadena[indice].isalpha() == True):
+            letraResultante = " " + cifrarLetra_CodigoBinario(cadena[indice])
+        elif (cadena[indice] == " "):
+            letraResultante = " *"
+        else:
+            letraResultante = cadena[indice]
+
+        cadenaResultante = cadenaResultante + letraResultante
+        indice += 1
+
+    return cadenaResultante
+
 
 '''
     Entradas:
@@ -639,21 +661,23 @@ def cifrar_CodigoBinario():
         - No hay.
 
 '''
-def cifrarLetra_CodigoBinario(letra):
-    letraCifrada= ""
-    letras = "abcdefghijklmnopqrstuvwxyz"    
 
-    if(buscarCaracter(letras, letra)!=-1):
+
+def cifrarLetra_CodigoBinario(letra):
+    letraCifrada = ""
+    letras = "abcdefghijklmnopqrstuvwxyz"
+
+    if (buscarCaracter(letras, letra) != -1):
 
         letraCifrada = format(buscarCaracter(letras, letra), '05b')
-                                                                         
+
         return letraCifrada
     else:
         return letra
-    
-def descifrar_CodigoBinario():
+
+
+def descifrar_CodigoBinario(cadena):
     binario = ""
-    cadena = input("Ingrese la combinación binaria que desea descifrar: ")
     resultado = ""
     while (cadena != ""):
 
@@ -674,15 +698,129 @@ def sacarLetra(binario):
     letra = abecedario[int(binario, 2)]
     return letra
 
-#--------------------------------------------Validacion de Entradas----------------------------------------------------------------------------
+
+# --------------------------------------------Validacion de Entradas----------------------------------------------------------------------------
+
+def validarEntradaCifrado(numCifrado):
+    
+    fraseSoloABC = "12378"
+    fraseSoloAscii = "456"
+
+    entradaValida = False 
+
+    abecedario = "abcdefghijklmnopqrstuvwxyz "
+    abecedarioAst = "abcdefghijklmnopqrstuvwxyz*"
+
+    cadena = input("Ingrese la frase o palabra que desea cifrar: ")
+    if (cadena==""):
+        return "-1"
+    else:
+        if (buscarCaracter(fraseSoloABC, str(numCifrado)) != -1):
+            indice=0
+            while (indice != len(cadena)):
+                if(buscarCaracter(abecedario, cadena[indice].lower())==-1):
+                    return "-2"
+                indice+=1
+            entradaValida = True
+        else:
+            if (buscarCaracter(fraseSoloAscii, str(numCifrado)) != -1):
+                if(cadena.isascii()==True):
+                    entradaValida = True
+                else:
+                    return "-3"
+        
+        if(entradaValida == True):
+            return cadena        
+
+def validarEntradaDescifrado(numCifrado):
+    
+    fraseSoloABC = "123"
+    fraseSoloAscii = "456"
+    fraseABCyAst = "7"
+    fraseSoloBin = "8"
+
+    entradaValida = False 
+
+    abecedario = "abcdefghijklmnopqrstuvwxyz "
+    abecedarioAst = "abcdefghijklmnopqrstuvwxyz*"
+    charBin = "01* "
+
+    cadena = input("Ingrese la frase o palabra que desea cifrar: ")
+    if (cadena==""):
+        return -1
+    else:
+
+        if (buscarCaracter(fraseSoloABC, numCifrado) != -1):
+            indice=0
+            while (indice != len(cadena)):
+                if(buscarCaracter(abecedario, cadena[indice].lower())==-1):
+                    return "-2"
+                indice+=1
+            entradaValida = True
+        else:
+            if (buscarCaracter(fraseSoloAscii, str(numCifrado)) != -1):
+                if(cadena.isascii()==True):
+                    entradaValida = True
+                else:
+                    return "-3" 
+            else:
+                if (buscarCaracter(fraseABCyAst, numCifrado) != -1):
+                    indice=0
+                    while (indice != len(cadena)):
+                        if(buscarCaracter(abecedarioAst, cadena[indice].lower())==-1):
+                            return -4
+                        indice+=1
+                    entradaValida = True
+
+                else:
+                    if (buscarCaracter(fraseSoloBin, numCifrado) != -1):
+                        indice=0
+                        while (indice != len(cadena)):
+                            if(buscarCaracter(charBin, cadena[indice].lower())==-1):
+                                return -5
+                            indice+=1
+                    entradaValida = True
+        
+        if(entradaValida == True):
+            return cadena       
+
+# def validarClaveCifrado(numCifrado):
+    
+#     fraseSoloNum = "3"
+#     fraseSoloABC = "2"
+
+#     entradaValida = False 
+
+#     numeros = "0123456789"
+#     abecedario = "abcdefghijklmnopqrstuvwxyz"
+
+#     clave = input("Digite la clave requerida para cifrar la palabra/frase: ")
+#     if (cadena==""):
+#         return "-1"
+#     else:
+#         if (buscarCaracter(fraseSoloNum, str(numCifrado)) != -1):
+#             indice=0
+#             while (indice != len(cadena)):
+#                 if(buscarCaracter(numeros, cadena[indice].lower())==-1):
+#                     return "-2"
+#                 indice+=1
+#             entradaValida = True
+#         else:
+#             if (buscarCaracter(fraseSoloAscii, str(numCifrado)) != -1):
+#                 if(cadena.isascii()==True):
+#                     entradaValida = True
+#                 else:
+#                     return "-3"
+        
+#         if(entradaValida == True):
+#             return cadena        
 
 
+# --------------------------------------------Menu Cifrado----------------------------------------------------------------------------
+def menuCifrado():
+    opcionesValidas = "12345678"
 
-
-#--------------------------------------------Menu Cifrado----------------------------------------------------------------------------
-def menuCifrado():    
-
-    print("\n\t---------------------")
+    print("\t---------------------")
     print("\t  Opciones de Cifrado")
     print("\t-----------------------")
     print("\nSeleccione una de las opciones.")
@@ -696,8 +834,7 @@ def menuCifrado():
     print("7. Cifrado Telefónico")
     print("8. Cifrado Binario")
     print("9. Regresar al Menú Principal")
-    
-    
+
     try:
         opcion = int(input("\nOpcion: "))
     except:
@@ -707,51 +844,69 @@ def menuCifrado():
         menuCifrado()
 
     print("\n")
-    
-    if(opcion==1):
-        print("La cadena cifrada es la siguiente: " + cifrarDescifrar_CodigoCesar("cifrado"))
-        input("\n-->Presione la tecla enter para continuar...")
-        menuCifrado()
-    elif(opcion==2):
-        print("La cadena cifrada es la siguiente: " + cifrarDescifrar_CodigoPorLlave("cifrado"))
-        input("\n-->Presione la tecla enter para continuar...")
-        menuCifrado()
-    elif(opcion==3):
-        print("La cadena cifrada es la siguiente: " + cifrarDescifrar_SustitucionVigenere("cifrado"))
-        input("\n-->Presione la tecla enter para continuar...")
-        menuCifrado()
-    elif(opcion==4):
-        print("La cadena cifrada es la siguiente: " + cifrar_CodigoRSA())
-        input("\n-->Presione la tecla enter para continuar...")
-        menuCifrado()
-    elif(opcion==5):
-        print("La cadena cifrada es la siguiente: " + cifrar_descifrar_PalabraInversa())
-        input("\n-->Presione la tecla enter para continuar...")
-        menuCifrado()
-    elif(opcion==6):
-        print("La cadena cifrada es la siguiente: " + cifrarDescifrar_MensajeInverso())
-        input("\n-->Presione la tecla enter para continuar...")
-        menuCifrado()
-    elif(opcion==7):
-        print("La cadena cifrada es la siguiente: " + cifrar_CodigoTelefonico())
-        input("\n-->Presione la tecla enter para continuar...")
-        menuCifrado()
-    elif(opcion==8):
-        print("La cadena cifrada es la siguiente: " + cifrar_CodigoBinario())
-        input("\n-->Presione la tecla enter para continuar...")
-        menuCifrado()
-    elif(opcion==9):
-        menuPrincipal()
+
+    if (buscarCaracter(opcionesValidas, str(opcion)) != -1):
+        resultadoEntrada = validarEntradaCifrado(opcion)
+        if(resultadoEntrada=="-1"):       
+            print("*** Se ha producido un ERROR: Es necesario que ingrese una valor para palabra o frase ***")
+            menuDescifrado()
+        elif(resultadoEntrada=="-2"):       
+            print("*** Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos ***")
+            menuDescifrado()
+        elif(resultadoEntrada=="-3"):
+            print("*** Se ha producido un ERROR: La palabra o frase SOLO debe contener caracteres ASCII ***")
+            menuDescifrado()
+        elif(resultadoEntrada=="-4"):
+            print("*** Se ha producido un ERROR: La palabra o frase SOLO debe contener caracteres del alfabeto o el símbolo \"*\" ***")
+            menuDescifrado()
+        else:
+            if (opcion == 1):
+                print("La frase o palabra cifrada es la siguiente: " + cifrarDescifrar_CodigoCesar("cifrado", resultadoEntrada))
+                input("\n-->Presione la tecla enter para continuar...")
+                menuCifrado()
+            elif (opcion == 2):
+                print("La frase o palabra cifrada es la siguiente: " + cifrarDescifrar_CodigoPorLlave("cifrado", resultadoEntrada))
+                input("\n-->Presione la tecla enter para continuar...")
+                menuCifrado()
+            elif (opcion == 3):
+                print("La frase o palabra cifrada es la siguiente: " + cifrarDescifrar_SustitucionVigenere("cifrado", resultadoEntrada))
+                input("\n-->Presione la tecla enter para continuar...")
+                menuCifrado()
+            elif (opcion == 4):
+                print("La frase o palabra cifrada es la siguiente: " + cifrar_CodigoRSA(resultadoEntrada))
+                input("\n-->Presione la tecla enter para continuar...")
+                menuCifrado()
+            elif (opcion == 5):
+                print("La frase o palabra cifrada es la siguiente: " + cifrar_descifrar_PalabraInversa(resultadoEntrada))
+                input("\n-->Presione la tecla enter para continuar...")
+                menuCifrado()
+            elif (opcion == 6):
+                print("La frase o palabra cifrada es la siguiente: " + cifrarDescifrar_MensajeInverso(resultadoEntrada))
+                input("\n-->Presione la tecla enter para continuar...")
+                menuCifrado()
+            elif (opcion == 7):
+                print("La frase o palabra cifrada es la siguiente: " + cifrar_CodigoTelefonico(resultadoEntrada))
+                input("\n-->Presione la tecla enter para continuar...")
+                menuCifrado()
+            elif (opcion == 8):
+                print("La frase o palabra cifrada es la siguiente: " + cifrar_CodigoBinario(resultadoEntrada))
+                input("\n-->Presione la tecla enter para continuar...")
+                menuCifrado()
     else:
-        print("\t*************************************")
-        print("\tOpcion no valida, vuelva a intentarlo")
-        print("\t*************************************")
-        menuCifrado()
+        if (opcion == 9):
+            menuPrincipal()
+        else:
+            print("\t*************************************")
+            print("\tOpcion no valida, vuelva a intentarlo")
+            print("\t*************************************")
+            menuCifrado()
 
-#--------------------------------------------Menu Descifrado----------------------------------------------------------------------------
-def menuDescifrado():    
 
-    print("\n\t------------------------")
+# --------------------------------------------Menu Descifrado----------------------------------------------------------------------------
+def menuDescifrado():
+    opcionesValidas = "12345678"
+
+    print("\t------------------------")
     print("\t  Opciones de Descifrado")
     print("\t--------------------------")
     print("\nSeleccione una de las opciones.")
@@ -765,8 +920,7 @@ def menuDescifrado():
     print("7. Descifrado Telefónico")
     print("8. Descifrado Binario")
     print("9. Regresar al Menú Principal")
-    
-    
+
     try:
         opcion = int(input("\nOpcion: "))
     except:
@@ -776,51 +930,71 @@ def menuDescifrado():
         menuDescifrado()
 
     print("\n")
-    
-    if(opcion==1):
-        print("La cadena descifrada es la siguiente: " + cifrarDescifrar_CodigoCesar("descifrado"))
-        input("\n-->Presione la tecla enter para continuar...")
-        menuDescifrado()
-    elif(opcion==2):
-        print("La cadena descifrada es la siguiente: " + cifrarDescifrar_CodigoPorLlave("descifrado"))
-        input("\n-->Presione la tecla enter para continuar...")
-        menuDescifrado()
-    elif(opcion==3):
-        print("La cadena descifrada es la siguiente: " + cifrarDescifrar_SustitucionVigenere("descifrado"))
-        input("\n-->Presione la tecla enter para continuar...")
-        menuDescifrado()
-    elif(opcion==4):
-        print("La cadena descifrada es la siguiente: " + descifrar_CodigoRSA())
-        input("\n-->Presione la tecla enter para continuar...")
-        menuDescifrado()
-    elif(opcion==5):
-        print("La cadena descifrada es la siguiente: " + cifrar_descifrar_PalabraInversa())
-        input("\n-->Presione la tecla enter para continuar...")
-        menuDescifrado()
-    elif(opcion==6):
-        print("La cadena descifrada es la siguiente: " + cifrarDescifrar_MensajeInverso())
-        input("\n-->Presione la tecla enter para continuar...")
-        menuDescifrado()
-    elif(opcion==7):
-        print("La cadena descifrada es la siguiente: " + descifrar_CodigoTelefonico())
-        input("\n-->Presione la tecla enter para continuar...")
-        menuDescifrado()
-    elif(opcion==8):
-        print("La cadena descifrada es la siguiente: " + descifrar_CodigoBinario())
-        input("\n-->Presione la tecla enter para continuar...")
-        menuDescifrado()
-    elif(opcion==9):
-        menuPrincipal()
-    else:
-        print("\t*************************************")
-        print("\tOpcion no valida, vuelva a intentarlo")
-        print("\t*************************************")
-        menuDescifrado()
-         
-#--------------------------------------------Menu Principal----------------------------------------------------------------------------
-def menuPrincipal():    
+
+    if (buscarCaracter(opcionesValidas, str(opcion)) != -1):
+        resultadoEntrada = validarEntradaDescifrado(opcion)
+        if(resultadoEntrada=="-1"):       
+            print("*** Se ha producido un ERROR: Es necesario que ingrese una valor para palabra o frase ***")
+            menuDescifrado()
+        elif(resultadoEntrada=="-2"):       
+            print("*** Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos ***")
+            menuDescifrado()
+        elif(resultadoEntrada=="-3"):
+            print("*** Se ha producido un ERROR: La palabra o frase SOLO debe contener caracteres ASCII ***")
+            menuDescifrado()
+        elif(resultadoEntrada=="-4"):
+            print("*** Se ha producido un ERROR: La palabra o frase SOLO debe contener caracteres del alfabeto o el símbolo \"*\" ***")
+            menuDescifrado()
+        elif(resultadoEntrada=="-5"):
+            print("*** Se ha producido un ERROR: La palabra o frase SOLO puede contener los caracteres 1, 0, el símbolo * o espacios en blanco ***")
+            menuDescifrado()
+        else:
+            if (opcion == 1):
+                print("La frase o palabra descifrada es la siguiente: " + cifrarDescifrar_CodigoCesar("descifrado", resultadoEntrada))
+                input("\n-->Presione la tecla enter para continuar...")
+                menuDescifrado()
+            elif (opcion == 2):
+                print("La frase o palabra descifrada es la siguiente: " + cifrarDescifrar_CodigoPorLlave("descifrado", resultadoEntrada))
+                input("\n-->Presione la tecla enter para continuar...")
+                menuDescifrado()
+            elif (opcion == 3):
+                print("La frase o palabra descifrada es la siguiente: " + cifrarDescifrar_SustitucionVigenere("descifrado", resultadoEntrada))
+                input("\n-->Presione la tecla enter para continuar...")
+                menuDescifrado()
+            elif (opcion == 4):
+                print("La frase o palabra descifrada es la siguiente: " + descifrar_CodigoRSA(resultadoEntrada))
+                input("\n-->Presione la tecla enter para continuar...")
+                menuDescifrado()
+            elif (opcion == 5):
+                print("La frase o palabra descifrada es la siguiente: " + cifrar_descifrar_PalabraInversa(resultadoEntrada))
+                input("\n-->Presione la tecla enter para continuar...")
+                menuDescifrado()
+            elif (opcion == 6):
+                print("La frase o palabra descifrada es la siguiente: " + cifrarDescifrar_MensajeInverso(resultadoEntrada))
+                input("\n-->Presione la tecla enter para continuar...")
+                menuDescifrado()
+            elif (opcion == 7):
+                print("La frase o palabra descifrada es la siguiente: " + descifrar_CodigoTelefonico(resultadoEntrada))
+                input("\n-->Presione la tecla enter para continuar...")
+                menuDescifrado()
+            elif (opcion == 8):
+                print("La frase o palabra descifrada es la siguiente: " + descifrar_CodigoBinario(resultadoEntrada))
+                input("\n-->Presione la tecla enter para continuar...")
+                menuDescifrado()
+    else:    
+        if (opcion == 9):
+            menuPrincipal()
+        else:
+            print("\t*************************************")
+            print("\tOpcion no valida, vuelva a intentarlo")
+            print("\t*************************************")
+            menuDescifrado()
+
+
+# --------------------------------------------Menu Principal----------------------------------------------------------------------------
+def menuPrincipal():
     opcion = 0
-    
+
     print("\n\t------------------")
     print("\t  Menu Principal")
     print("\t--------------------")
@@ -829,7 +1003,7 @@ def menuPrincipal():
     print("\n1. Cifrar frase o palabra")
     print("2. Descifrar frase o palabra")
     print("3. Finalizar Programa")
-    
+
     try:
         opcion = int(input("\nOpcion: "))
     except:
@@ -839,16 +1013,16 @@ def menuPrincipal():
         menuPrincipal()
 
     print("\n")
-    
-    if(opcion==1):
+
+    if (opcion == 1):
         menuCifrado()
-        input("\n-->Presione la tecla enter para continuar...")
+        input("\n-->Presione la tecla Enter para continuar...")
         menuPrincipal()
-    elif(opcion==2):
+    elif (opcion == 2):
         menuDescifrado()
-        input("\n-->Presione la tecla enter para continuar...")
+        input("\n-->Presione la tecla Enter para continuar...")
         menuPrincipal()
-    elif(opcion==3):
+    elif (opcion == 3):
         print("\t----------------------")
         print("\tPrograma Finalizado")
         print("\t----------------------")
@@ -857,5 +1031,6 @@ def menuPrincipal():
         print("\tOpcion no valida, vuelva a intentarlo")
         print("\t*************************************")
         menuPrincipal()
-        
+
+
 menuPrincipal()

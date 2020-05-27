@@ -182,33 +182,29 @@ def cifrarDescifrarLetra_CodigoCesar(letra, operacion):
         - No hay.
 
 '''
-def cifrarDescifrar_CodigoPorLlave(operacion, cadena):
-    clave = input("Digite la clave requerida para cifrar la palabra/frase: ")
-    if (len(clave) <= 1):
-        print("Se ha producido un ERROR: La clave debe estar compuesta por al menos dos caracteres")
-    else:
-        cadena = cadena.lower()
-        cadenaResultante = ""
-        letraResultante = ""
-        indice = 0
-        indiceClave = 0
+def cifrarDescifrar_CodigoPorLlave(operacion, cadena, clave):
+    cadena = cadena.lower()
+    cadenaResultante = ""
+    letraResultante = ""
+    indice = 0
+    indiceClave = 0
 
-        while (indice != len(cadena)):
-            if (cadena[indice].isalpha() == True):
-                letraResultante = cifrarDescifrarLetra_CodigoPorLlave(cadena[indice], operacion, clave[indiceClave])
-                indiceClave += 1
-            elif (cadena[indice] == " "):
-                letraResultante = cadena[indice]
-            else:
-                letraResultante = " "
+    while (indice != len(cadena)):
+        if (cadena[indice].isalpha() == True):
+            letraResultante = cifrarDescifrarLetra_CodigoPorLlave(cadena[indice], operacion, clave[indiceClave])
+            indiceClave += 1
+        elif (cadena[indice] == " "):
+            letraResultante = cadena[indice]
+        else:
+            letraResultante = " "
 
-            if (indiceClave == (len(clave))):
-                indiceClave = 0
+        if (indiceClave == (len(clave))):
+            indiceClave = 0
 
-            cadenaResultante = cadenaResultante + letraResultante
-            indice += 1
+        cadenaResultante = cadenaResultante + letraResultante
+        indice += 1
 
-        return cadenaResultante
+    return cadenaResultante
 
 
 '''
@@ -258,33 +254,28 @@ def cifrarDescifrarLetra_CodigoPorLlave(letra, operacion, clave):
         - No hay.
 
 '''
-def cifrarDescifrar_SustitucionVigenere(operacion, cadena):
-    clave = input("Digite la clave requerida para cifrar/descifrar la palabra/frase: ")
-    if (clave == "" or len(clave) != 2):
-        print("Se ha producido un ERROR: La clave debe estar compuesta por dos dígitos")
-    else:
-        if (esEntero(clave) == True):
-            cadena = cadena.lower()
-            clave1 = int(clave[0])
-            clave2 = int(clave[1])
-            cadenaResultante = ""
-            letraResultante = ""
-            indice = 0
+def cifrarDescifrar_SustitucionVigenere(operacion, cadena, clave):
+    cadena = cadena.lower()
+    clave1 = int(clave[0])
+    clave2 = int(clave[1])
+    cadenaResultante = ""
+    letraResultante = ""
+    indice = 0
 
-            while (indice != len(cadena)):
-                if (cadena[indice] == " "):
-                    letraResultante = " "
-                elif ((indice + 1) % 2 != 0):
-                    letraResultante = cifrarDescifrarLetra_CodigoVigenere(cadena[indice], operacion, clave1)
-                else:
-                    letraResultante = cifrarDescifrarLetra_CodigoVigenere(cadena[indice], operacion, clave2)
-
-                cadenaResultante = cadenaResultante + letraResultante
-                indice += 1
-
-            return cadenaResultante
+    while (indice != len(cadena)):
+        if (cadena[indice] == " "):
+            letraResultante = " "
+        elif ((indice + 1) % 2 != 0):
+            letraResultante = cifrarDescifrarLetra_CodigoVigenere(cadena[indice], operacion, clave1)
         else:
-            print("Se ha producido un ERROR: Los digitos de la clave deben ser valores enteros")
+            letraResultante = cifrarDescifrarLetra_CodigoVigenere(cadena[indice], operacion, clave2)
+
+        cadenaResultante = cadenaResultante + letraResultante
+        indice += 1
+
+    return cadenaResultante
+    # else:
+    #     print("Se ha producido un ERROR: Los digitos de la clave deben ser valores enteros")
 
 
 '''
@@ -408,10 +399,13 @@ def cifrar_CodigoRSA(cadena):
         - No hay.
 
 '''
-def descifrar_CodigoRSA(cadena):
-    print("Digite la clave privada requerida para descifrar la frase/palabra")
-    n=int(input("-->Ingrese el primer valor de la clave: "))
-    d=int(input("-->Ingrese el segundo valor de la clave: "))
+def descifrar_CodigoRSA(cadena, clave):
+    #print("Digite la clave privada requerida para descifrar la frase/palabra")
+    # n=int(input("-->Ingrese el primer valor de la clave: "))
+    # d=int(input("-->Ingrese el segundo valor de la clave: "))
+    claveSplit=clave.split()
+    n=int(claveSplit[0])
+    d=int(claveSplit[1])
     cadenaResultante = ""
     letrasSeparadas = cadena.split("*")
     letraCifrada = ""
@@ -745,7 +739,7 @@ def validarEntradaDescifrado(numCifrado):
     abecedarioAst = "abcdefghijklmnopqrstuvwxyz*"
     charBin = "01* "
 
-    cadena = input("Ingrese la frase o palabra que desea cifrar: ")
+    cadena = input("Ingrese la frase o palabra que desea descifrar: ")
     if (cadena==""):
         return -1
     else:
@@ -784,36 +778,82 @@ def validarEntradaDescifrado(numCifrado):
         if(entradaValida == True):
             return cadena       
 
-# def validarClaveCifrado(numCifrado):
+def validarClaveCifrado(numCifrado):
     
-#     fraseSoloNum = "3"
-#     fraseSoloABC = "2"
+    fraseSoloNum = "3"
+    fraseSoloABC = "2"
 
-#     entradaValida = False 
+    entradaValida = False 
 
-#     numeros = "0123456789"
-#     abecedario = "abcdefghijklmnopqrstuvwxyz"
+    numeros = "0123456789"
+    abecedario = "abcdefghijklmnopqrstuvwxyz"
 
-#     clave = input("Digite la clave requerida para cifrar la palabra/frase: ")
-#     if (cadena==""):
-#         return "-1"
-#     else:
-#         if (buscarCaracter(fraseSoloNum, str(numCifrado)) != -1):
-#             indice=0
-#             while (indice != len(cadena)):
-#                 if(buscarCaracter(numeros, cadena[indice].lower())==-1):
-#                     return "-2"
-#                 indice+=1
-#             entradaValida = True
-#         else:
-#             if (buscarCaracter(fraseSoloAscii, str(numCifrado)) != -1):
-#                 if(cadena.isascii()==True):
-#                     entradaValida = True
-#                 else:
-#                     return "-3"
-        
-#         if(entradaValida == True):
-#             return cadena        
+    clave = input("Digite la clave requerida para cifrar la palabra/frase: ")
+    if (clave==""):
+        return "-1"
+    else:
+        if (buscarCaracter(fraseSoloNum, str(numCifrado)) != -1):
+            indice=0
+            while (indice != len(clave)):
+                if(buscarCaracter(numeros, clave[indice]) == -1):
+                    return "-2"
+                indice+=1
+            entradaValida = True
+        else:
+            if (buscarCaracter(fraseSoloABC, str(numCifrado)) != -1):
+                indice=0
+                while (indice != len(clave)):
+                    if(buscarCaracter(abecedario, clave[indice].lower()) == -1):
+                        return "-3"
+                    indice+=1
+                entradaValida = True
+        if(entradaValida == True):
+            return clave    
+
+def validarClaveDescifrado(numCifrado):
+    
+    fraseSoloNum = "3"
+    fraseSoloABC = "2"
+
+    entradaValida = False 
+
+    numeros = "0123456789"
+    abecedario = "abcdefghijklmnopqrstuvwxyz"
+
+    if(int(numCifrado)==4):
+        print("Digite la clave requerida para cifrar la palabra/frase")
+        n = int(input("-->Ingrese el primer valor de la clave: "))
+        d = int(input("-->Ingrese el segundo valor de la clave: "))
+
+        if(n=="" or d==""):
+            return "-5"
+        elif (esEntero(n)==False or esEntero(n)==False):
+            return "-4"
+        else:
+            clave=str(n)+" "+str(d)
+            return clave
+    else:  
+        clave = input("Digite la clave requerida para cifrar la palabra/frase: ")
+        if (clave==""):
+            return "-1"
+        else:
+            if (buscarCaracter(fraseSoloNum, str(numCifrado)) != -1):
+                indice=0
+                while (indice != len(clave)):
+                    if(buscarCaracter(numeros, clave[indice]) == -1):
+                        return "-2"
+                    indice+=1
+                entradaValida = True
+            else:
+                if (buscarCaracter(fraseSoloABC, str(numCifrado)) != -1):
+                    indice=0
+                    while (indice != len(clave)):
+                        if(buscarCaracter(numeros, clave[indice].lower()) == -1):
+                            return "-3"
+                        indice+=1
+                    entradaValida = True
+            if(entradaValida == True):
+                return clave       
 
 
 # --------------------------------------------Menu Cifrado----------------------------------------------------------------------------
@@ -848,16 +888,16 @@ def menuCifrado():
     if (buscarCaracter(opcionesValidas, str(opcion)) != -1):
         resultadoEntrada = validarEntradaCifrado(opcion)
         if(resultadoEntrada=="-1"):       
-            print("*** Se ha producido un ERROR: Es necesario que ingrese una valor para palabra o frase ***")
+            print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase ***\n")
             menuDescifrado()
         elif(resultadoEntrada=="-2"):       
-            print("*** Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos ***")
+            print("\n*** Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos ***\n")
             menuDescifrado()
         elif(resultadoEntrada=="-3"):
-            print("*** Se ha producido un ERROR: La palabra o frase SOLO debe contener caracteres ASCII ***")
+            print("\n*** Se ha producido un ERROR: La palabra o frase SOLO debe contener caracteres ASCII ***\n")
             menuDescifrado()
         elif(resultadoEntrada=="-4"):
-            print("*** Se ha producido un ERROR: La palabra o frase SOLO debe contener caracteres del alfabeto o el símbolo \"*\" ***")
+            print("\n*** Se ha producido un ERROR: La palabra o frase SOLO debe contener caracteres del alfabeto o el símbolo \"*\" ***\n")
             menuDescifrado()
         else:
             if (opcion == 1):
@@ -865,13 +905,32 @@ def menuCifrado():
                 input("\n-->Presione la tecla enter para continuar...")
                 menuCifrado()
             elif (opcion == 2):
-                print("La frase o palabra cifrada es la siguiente: " + cifrarDescifrar_CodigoPorLlave("cifrado", resultadoEntrada))
-                input("\n-->Presione la tecla enter para continuar...")
-                menuCifrado()
+                resultadoClave = validarClaveCifrado(opcion)
+                if(resultadoClave=="-1"):       
+                    print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para la clave ***\n")
+                    menuDescifrado()
+                elif(resultadoClave=="-3"):
+                    print("\n*** Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos  ***\n")
+                    menuDescifrado()
+                else:
+                    print("La frase o palabra cifrada es la siguiente: " + cifrarDescifrar_CodigoPorLlave("cifrado", resultadoEntrada, resultadoClave))
+                    input("\n-->Presione la tecla enter para continuar...")
+                    menuCifrado()
             elif (opcion == 3):
-                print("La frase o palabra cifrada es la siguiente: " + cifrarDescifrar_SustitucionVigenere("cifrado", resultadoEntrada))
-                input("\n-->Presione la tecla enter para continuar...")
-                menuCifrado()
+                resultadoClave = validarClaveCifrado(opcion)
+                if(resultadoClave=="-1"):       
+                    print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para la clave ***\n")
+                    menuDescifrado()
+                elif(resultadoClave=="-2"):       
+                    print("\n*** Se ha producido un ERROR: La palabra o frase NO debe contener letras ni símbolos ***\n")
+                    menuDescifrado()
+                else:
+                    print("\t---------------------")
+                    print("\tSustitucion Vigenére")
+                    print("\t-----------------------")
+                    print("La frase o palabra cifrada es la siguiente: " + cifrarDescifrar_SustitucionVigenere("cifrado", resultadoEntrada, resultadoClave))
+                    input("\n-->Presione la tecla enter para continuar...")
+                    menuCifrado()
             elif (opcion == 4):
                 print("La frase o palabra cifrada es la siguiente: " + cifrar_CodigoRSA(resultadoEntrada))
                 input("\n-->Presione la tecla enter para continuar...")
@@ -934,7 +993,7 @@ def menuDescifrado():
     if (buscarCaracter(opcionesValidas, str(opcion)) != -1):
         resultadoEntrada = validarEntradaDescifrado(opcion)
         if(resultadoEntrada=="-1"):       
-            print("*** Se ha producido un ERROR: Es necesario que ingrese una valor para palabra o frase ***")
+            print("*** Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase ***")
             menuDescifrado()
         elif(resultadoEntrada=="-2"):       
             print("*** Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos ***")
@@ -954,17 +1013,41 @@ def menuDescifrado():
                 input("\n-->Presione la tecla enter para continuar...")
                 menuDescifrado()
             elif (opcion == 2):
-                print("La frase o palabra descifrada es la siguiente: " + cifrarDescifrar_CodigoPorLlave("descifrado", resultadoEntrada))
-                input("\n-->Presione la tecla enter para continuar...")
-                menuDescifrado()
+                resultadoClave = validarClaveDescifrado(opcion)
+                if(resultadoClave=="-1"):       
+                    print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para la clave ***\n")
+                    menuDescifrado()
+                elif(resultadoClave=="-3"):
+                    print("\n*** Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos  ***\n")
+                    menuDescifrado()
+                else:
+                    print("La frase o palabra descifrada es la siguiente: " + cifrarDescifrar_CodigoPorLlave("descifrado", resultadoEntrada, resultadoClave))
+                    input("\n-->Presione la tecla enter para continuar...")
+                    menuDescifrado()
             elif (opcion == 3):
-                print("La frase o palabra descifrada es la siguiente: " + cifrarDescifrar_SustitucionVigenere("descifrado", resultadoEntrada))
-                input("\n-->Presione la tecla enter para continuar...")
-                menuDescifrado()
+                resultadoClave = validarClaveDescifrado(opcion)
+                if(resultadoClave=="-1"):       
+                    print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para la clave ***\n")
+                    menuDescifrado()
+                elif(resultadoClave=="-2"):       
+                    print("\n*** Se ha producido un ERROR: La palabra o frase NO debe contener letras ni símbolos ***\n")
+                    menuDescifrado()
+                else:
+                    print("La frase o palabra descifrada es la siguiente: " + cifrarDescifrar_SustitucionVigenere("descifrado", resultadoEntrada, resultadoClave))
+                    input("\n-->Presione la tecla enter para continuar...")
+                    menuDescifrado()
             elif (opcion == 4):
-                print("La frase o palabra descifrada es la siguiente: " + descifrar_CodigoRSA(resultadoEntrada))
-                input("\n-->Presione la tecla enter para continuar...")
-                menuDescifrado()
+                resultadoClave = validarClaveDescifrado(opcion)
+                if(resultadoClave=="-5"):       
+                    print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para los valores de n y d***\n")
+                    menuDescifrado()
+                elif(resultadoClave=="-4"):       
+                    print("\n*** Se ha producido un ERROR: La palabra o frase NO debe contener letras ni símbolos ***\n")
+                    menuDescifrado()
+                else:
+                    print("La frase o palabra descifrada es la siguiente: " + descifrar_CodigoRSA(resultadoEntrada, resultadoClave))
+                    input("\n-->Presione la tecla enter para continuar...")
+                    menuDescifrado()
             elif (opcion == 5):
                 print("La frase o palabra descifrada es la siguiente: " + cifrar_descifrar_PalabraInversa(resultadoEntrada))
                 input("\n-->Presione la tecla enter para continuar...")

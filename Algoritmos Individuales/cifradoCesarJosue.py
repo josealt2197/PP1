@@ -7,8 +7,8 @@ def cifradoCesar():
     resultado=""
     cadena = input("ingrese la oración que desea decifrar: ")
     if (esNumeroEntero(cadena) ):
-        print("Debe ingresar palabras")
-        return cifradoCesar()
+        return "Debe ingresar palabras"
+       
     cadena = cadena.upper()
 
     while (contandor<len(cadena)):
@@ -16,6 +16,7 @@ def cifradoCesar():
             resultado=resultado+" "
         else:
             resultado=resultado+cifrarLetra(cadena[contandor])
+            print ( resultado)
         contandor+=1
     print("su secreto es: "+ str(resultado))
 
@@ -28,9 +29,9 @@ def desCifradoCesar():
     contandor = 0
     resultado=""
     cadena = input("ingrese la oración que desea decifrar: ")
-    if (esNumeroEntero(cadena) and esNumeroEntero(cadena)):
+    if (esNumeroEntero(cadena)):
         print("Debe ingresar palabras")
-        return cifradoCesar()
+        
     cadena = cadena.upper()
 
     while (contandor<len(cadena)):
@@ -56,11 +57,11 @@ def cifrarLetra(letra):
                 abecedario[i] != 'Y' and
                 abecedario[i] != 'Z'):
             return abecedario[i + 3]
-        elif (abecedario[i] == 'X'):
+        elif (letra == 'X'):
             return 'A'
-        elif (abecedario[i] == 'Y'):
+        elif (letra == 'Y'):
             return 'B'
-        elif (abecedario[i] == 'Z'):
+        elif (letra == 'Z'):
             return 'C'
         i += 1
 
@@ -72,15 +73,15 @@ def descifrarLetra(letra):
     tamano = len(abecedario)
     while (i < tamano):
         if (abecedario[i] == letra and
-                abecedario[i] != 'X' and
-                abecedario[i] != 'Y' and
-                abecedario[i] != 'Z'):
+                abecedario[i] != 'A' and
+                abecedario[i] != 'B' and
+                abecedario[i] != 'C'):
             return abecedario[i - 3]
-        elif (abecedario[i] == 'A'):
+        elif (letra == 'A'):
             return 'X'
-        elif (abecedario[i] == 'B'):
+        elif (letra == 'B'):
             return 'Y'
-        elif (abecedario[i] == 'C'):
+        elif (letra == 'C'):
             return 'Z'
         i += 1
 

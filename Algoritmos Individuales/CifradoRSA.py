@@ -20,33 +20,34 @@ def generarLlavesRSA():
     d=0
 
     #Paso 1
-    while(esPrimo(p)!=True and esPrimo(p)!=True):
+    while(esPrimo(p)!=True and esPrimo(q)!=True):
         p=randint(0,1000)
         q=randint(0,1000)
 
-    # print("p= "+str(p))
-    # print("q= "+str(q))
+    print("p= "+str(p))
+    print("q= "+str(q))
     
     #Paso 2
     n=p*q
-    # print("n= "+str(n))
+    print("n= "+str(n))
     
     #Paso 3
     fiDeN=(p-1)*(q-1)
-    # print("fiDeN= "+str(fiDeN))
+    print("fiDeN= "+str(fiDeN))
     
     #Paso 4
     e=randint(0,fiDeN)
     while(calcularMCD(fiDeN,e)!=1):
         e=randint(0,fiDeN)
-    # print("e= "+str(e))
+    print("e= "+str(e))
     
     #Paso 5
     d=1
     while(((e*d) + (fiDeN * -1))!=1): 
         d+=1
+        print(d)
 
-    # print("d= "+str(d))
+    print("d= "+str(d))
 
     claves= "Llaves generadas:" "Publica: ("+str(n)+", "+str(e)+") y Privada: ("+str(n)+", "+str(d)+")" 
     return claves

@@ -941,7 +941,12 @@ def menuCifrado():
                     print("\n\t***********************************************************************************************")  
                 else:
                     print("\n-->La frase o palabra cifrada es la siguiente: " + cifrarDescifrarCesar("cifrado", resultadoEntrada))
+<<<<<<< HEAD
                     input("\n<--Presione la tecla \"Enter\" para continuar...\n")
+=======
+                    input("\n<--Presione la tecla \"Enter\" para continuar...")
+                    menuCifrado()
+>>>>>>> parent of 2a5cc47... Embellecimiento de decifrado
             elif (opcion == 2):
                 print("\n\t---------------------")
                 print("\t  Cifrado Por Llave")
@@ -997,8 +1002,14 @@ def menuCifrado():
                         print("\t*Se ha producido un ERROR: La clave SOLO debe contener DOS numeros enteros entre 0 y 9*")
                         print("\n\t************************************************************************************") 
                     else:
+<<<<<<< HEAD
                         print("\n-->La frase o palabra cifrada es la siguiente: " + cifrarDescifrarSustitucionVigenere("cifrado", resultadoEntrada, resultadoClave))
                         input("\n<--Presione la tecla \"Enter\" para continuar...\n")
+=======
+                        print("-->La frase o palabra cifrada es la siguiente: " + cifrarDescifrarSustitucionVigenere("cifrado", resultadoEntrada, resultadoClave))
+                        input("\n<--Presione la tecla \"Enter\" para continuar...")
+                        menuCifrado()
+>>>>>>> parent of 2a5cc47... Embellecimiento de decifrado
             elif (opcion == 4):
                 print("\n\t---------------------")
                 print("\t     Cifrado RSA")
@@ -1014,8 +1025,14 @@ def menuCifrado():
                     print("\t*Se ha producido un ERROR: La palabra/frase solo debe contener caracteres ASCII*")
                     print("\t********************************************************************************")     
                 else:
+<<<<<<< HEAD
                     print("\n-->La frase o palabra cifrada es la siguiente: " + cifrarRSA(resultadoEntrada))
                     input("\n<--Presione la tecla \"Enter\" para continuar...\n")
+=======
+                    print("-->La frase o palabra cifrada es la siguiente: " + cifrarRSA(resultadoEntrada))
+                    input("\n<--Presione la tecla \"Enter\" para continuar...")
+                    menuCifrado()
+>>>>>>> parent of 2a5cc47... Embellecimiento de decifrado
             elif (opcion == 5):
                 print("\n\t---------------------")
                 print("\t   Palabra Inversa")
@@ -1031,8 +1048,14 @@ def menuCifrado():
                     print("\t*Se ha producido un ERROR: La palabra/frase solo debe contener caracteres ASCII*")
                     print("\t********************************************************************************")
                 else:
+<<<<<<< HEAD
                     print("\n-->La frase o palabra cifrada es la siguiente: " + cifrarDescifrarPalabraInversa(resultadoEntrada))
                     input("\n<--Presione la tecla \"Enter\" para continuar...\n")
+=======
+                    print("-->La frase o palabra cifrada es la siguiente: " + cifrarDescifrarPalabraInversa(resultadoEntrada))
+                    input("\n<--Presione la tecla \"Enter\" para continuar...")
+                    menuCifrado()
+>>>>>>> parent of 2a5cc47... Embellecimiento de decifrado
             elif (opcion == 6):
                 print("\n\t---------------------")
                 print("\t   Mensaje Inverso")
@@ -1048,8 +1071,14 @@ def menuCifrado():
                     print("\t*Se ha producido un ERROR: La palabra/frase solo debe contener caracteres ASCII*\n")
                     print("\t*********************************************************************************")
                 else:
+<<<<<<< HEAD
                     print("\n-->La frase o palabra cifrada es la siguiente: " + cifrarDescifrarMensajeInverso(resultadoEntrada))
                     input("\n<--Presione la tecla \"Enter\" para continuar...\n")
+=======
+                    print("-->La frase o palabra cifrada es la siguiente: " + cifrarDescifrarMensajeInverso(resultadoEntrada))
+                    input("\n<--Presione la tecla \"Enter\" para continuar...")
+                    menuCifrado()
+>>>>>>> parent of 2a5cc47... Embellecimiento de decifrado
             elif (opcion == 7):
                 print("\n\t---------------------")
                 print("\t  Cifrado Telefónico")
@@ -1065,8 +1094,14 @@ def menuCifrado():
                     print("\t*Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos*\n")
                     print("\t***********************************************************************************************")
                 else:
+<<<<<<< HEAD
                     print("\n-->La frase o palabra cifrada es la siguiente: " + cifrarCodigoTelefonico(resultadoEntrada))
                     input("\n<--Presione la tecla \"Enter\" para continuar...\n")
+=======
+                    print("-->La frase o palabra cifrada es la siguiente: " + cifrarCodigoTelefonico(resultadoEntrada))
+                    input("\n<--Presione la tecla \"Enter\" para continuar...")
+                    menuCifrado()
+>>>>>>> parent of 2a5cc47... Embellecimiento de decifrado
             elif (opcion == 8):
                 print("\n\t---------------------")
                 print("\t   Cifrado Binario")
@@ -1082,8 +1117,15 @@ def menuCifrado():
                     print("\t*Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos*")
                     print("\t************************************************************************************************") 
                 else:
+<<<<<<< HEAD
                     print("\n-->La frase o palabra cifrada es la siguiente: " + cifrarBinario(resultadoEntrada))
                     input("\n<--Presione la tecla \"Enter\" para continuar...\n")       
+=======
+                    print("-->La frase o palabra cifrada es la siguiente: " + cifrarBinario(resultadoEntrada))
+                    input("\n<--Presione la tecla \"Enter\" para continuar...")
+                    menuCifrado()
+        
+>>>>>>> parent of 2a5cc47... Embellecimiento de decifrado
         else:            
             if (opcion == 9):
                 print("\n\t»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»")
@@ -1093,7 +1135,12 @@ def menuCifrado():
             else:
                 print("\t*************************************")
                 print("\tOpcion no valida, vuelva a intentarlo")
+<<<<<<< HEAD
                 print("\t*************************************\n")
+=======
+                print("\t*************************************")
+                menuCifrado()
+>>>>>>> parent of 2a5cc47... Embellecimiento de decifrado
 
 
 # --------------------------------------------Menu Descifrado----------------------------------------------------------------------------
@@ -1138,6 +1185,7 @@ def menuDescifrado():
             menuDescifrado()
 
         print("\n")
+<<<<<<< HEAD
         if (opcion >= 1 and opcion <= 8):
             cadena = input("<--Ingrese la frase o palabra que desea cifrar/descifrar: ")
 
@@ -1286,9 +1334,49 @@ def menuDescifrado():
                     print("\t**********************************************************************************")
                     print("\t* Se ha producido un ERROR: La palabra/frase solo debe contener caracteres ASCII *")
                     print("\t**********************************************************************************")
+=======
+
+        if (opcion == 1):
+            print("\n\t---------------------")
+            print("\t    Cifrado Cesar")
+            print("\t-----------------------")
+
+            resultadoEntrada = validarEntradaABC()
+            if(resultadoEntrada=="-1"):       
+                print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase ***\n")
+                menuDescifrado()
+            elif(resultadoEntrada=="-2"):       
+                print("\n*** Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos ***\n")
+                menuDescifrado()
+            else:
+                print("La frase o palabra descifrada es la siguiente: " + cifrarDescifrarCesar("descifrado", resultadoEntrada))
+                input("\n<--Presione la tecla \"Enter\" para continuar...")
+                menuDescifrado()
+        elif (opcion == 2):
+            print("\n\t---------------------")
+            print("\t  Cifrado Por Llave")
+            print("\t-----------------------")
+
+            resultadoEntrada = validarEntradaABC()
+            if(resultadoEntrada=="-1"):       
+                print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase ***\n")
+                menuDescifrado()
+            elif(resultadoEntrada=="-2"):       
+                print("\n*** Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos ***\n")
+                menuDescifrado()
+            else:
+                resultadoClave = validarClavePorLlave()
+                if(resultadoClave=="-1"):       
+                    print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para la clave ***\n")
+                    menuDescifrado()
+                elif(resultadoClave=="-2"):
+                    print("\n*** Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos  ***\n")
+                    menuDescifrado()
+>>>>>>> parent of 2a5cc47... Embellecimiento de decifrado
                 else:
-                    print("La frase o palabra cifrada es la siguiente: " + cifrarDescifrarMensajeInverso(resultadoEntrada))
+                    print("La frase o palabra descifrada es la siguiente: " + cifrarDescifrarPorLlave("descifrado", resultadoEntrada, resultadoClave))
                     input("\n<--Presione la tecla \"Enter\" para continuar...")
+<<<<<<< HEAD
             elif (opcion == 7):
                 print("\n\t---------------------")
                 print("\t  Cifrado Telefónico")
@@ -1307,9 +1395,33 @@ def menuDescifrado():
                     print("\t*************************************************************************************************")
                     print("\t* Se ha producido un ERROR: La palabra o frase SOLO debe contener caracteres numéricos en pares *")
                     print("\t*************************************************************************************************")
+=======
+                    menuDescifrado()
+        elif (opcion == 3):
+            print("\n\t---------------------")
+            print("\tSustitucion Vigenére")
+            print("\t-----------------------")
+
+            resultadoEntrada = validarEntradaABC()
+            if(resultadoEntrada=="-1"):       
+                print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase ***\n")
+                menuDescifrado()
+            elif(resultadoEntrada=="-2"):       
+                print("\n*** Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos ***\n")
+                menuDescifrado()
+            else:
+                resultadoClave = validarClaveVigenére()
+                if(resultadoClave=="-1"):       
+                    print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para la clave ***\n")
+                    menuDescifrado()
+                elif(resultadoClave=="-2"):       
+                    print("\n*** Se ha producido un ERROR: La palabra o frase NO debe contener letras ni símbolos ***\n")
+                    menuDescifrado()
+>>>>>>> parent of 2a5cc47... Embellecimiento de decifrado
                 else:
-                    print("La frase o palabra descifrada es la siguiente: " + descifrarCodigoTelefonico(resultadoEntrada))
+                    print("La frase o palabra descifrada es la siguiente: " + cifrarDescifrarSustitucionVigenere("descifrado", resultadoEntrada, resultadoClave))
                     input("\n<--Presione la tecla \"Enter\" para continuar...")
+<<<<<<< HEAD
             elif (opcion == 8):
                 print("\n\t---------------------")
                 print("\t   Cifrado Binario")
@@ -1324,20 +1436,121 @@ def menuDescifrado():
                     print("\t**********************************************************************************************************************")
                     print("\t*Se ha producido un ERROR: La palabra o frase SOLO debe contener caracteres numéricos como 1 o 0 y el simbolo \"*\"  *")
                     print("\t****************************************************************************************************************+*****")
-                else:
-                    print("La frase o palabra descifrada es la siguiente: " + descifrarBinario(resultadoEntrada))
-                    input("\n<--Presione la tecla \"Enter\" para continuar...")
-        else:
-            if (opcion == 9):
-                    print("\n\t»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»")
-                    print("\t»Regresando al Menu Principal»")
-                    print("\t»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»\n")
-                    menuPrincipal()
+=======
+                    menuDescifrado()
+        elif (opcion == 4):
+            print("\n\t---------------------")
+            print("\t     Cifrado RSA")
+            print("\t-----------------------")
+
+            resultadoEntrada = validarEntradaAscii()
+            if(resultadoEntrada=="-1"):       
+                print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase ***\n")
+                menuDescifrado()
+            elif(resultadoEntrada=="-2"):       
+                print("\n*** Se ha producido un ERROR: La palabra/frase solo debe contener caracteres ASCII ***\n")
+                menuDescifrado()
             else:
+                print("Digite la clave requerida para cifrar la palabra/frase")
+                n = int(input("-->Ingrese el primer valor de la clave: "))
+                d = int(input("-->Ingrese el segundo valor de la clave: "))
+                resultadoClave = validarClaveRSA(n, d)
+                if(resultadoClave=="-1"):       
+                    print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para los valores de n y d***\n")
+                    menuDescifrado()
+                elif(resultadoClave=="-2"):       
+                    print("\n*** Se ha producido un ERROR: los valores de n y d deben ser dos valores enteros***\n")
+                    menuDescifrado()
+>>>>>>> parent of 2a5cc47... Embellecimiento de decifrado
+                else:
+                    print("La frase o palabra descifrada es la siguiente: " + descifrarRSA(resultadoEntrada, n, d))
+                    input("\n<--Presione la tecla \"Enter\" para continuar...")
+                    menuDescifrado()
+        elif (opcion == 5):
+            print("\n\t---------------------")
+            print("\t   Palabra Inversa")
+            print("\t-----------------------")
+
+            resultadoEntrada = validarEntradaAscii()
+            if(resultadoEntrada=="-1"):       
+                print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase ***\n")
+                menuDescifrado()
+            elif(resultadoEntrada=="-2"):       
+                print("\n*** Se ha producido un ERROR: La palabra/frase solo debe contener caracteres ASCII ***\n")
+                menuDescifrado()
+            else:
+<<<<<<< HEAD
                 print("\t*****************************************")
                 print("\t* Opcion no valida, vuelva a intentarlo *")
                 print("\t*****************************************")
         
+=======
+                print("La frase o palabra cifrada es la siguiente: " + cifrarDescifrarPalabraInversa(resultadoEntrada))
+                input("\n<--Presione la tecla \"Enter\" para continuar...")
+                menuCifrado()
+        elif (opcion == 6):
+            print("\n\t---------------------")
+            print("\t   Mensaje Inverso")
+            print("\t-----------------------")
+
+            resultadoEntrada = validarEntradaAscii()
+            if(resultadoEntrada=="-1"):       
+                print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase ***\n")
+                menuDescifrado()
+            elif(resultadoEntrada=="-2"):       
+                print("\n*** Se ha producido un ERROR: La palabra/frase solo debe contener caracteres ASCII ***\n")
+                menuDescifrado()
+            else:
+                print("La frase o palabra cifrada es la siguiente: " + cifrarDescifrarMensajeInverso(resultadoEntrada))
+                input("\n<--Presione la tecla \"Enter\" para continuar...")
+                menuCifrado()
+        elif (opcion == 7):
+            print("\n\t---------------------")
+            print("\t  Cifrado Telefónico")
+            print("\t-----------------------")
+
+            resultadoEntrada = validarEntradaNumAst()
+            if(resultadoEntrada=="-1"):       
+                print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase ***\n")
+                menuDescifrado()
+            elif(resultadoEntrada=="-2"):       
+                print("\n*** Se ha producido un ERROR: La palabra o frase NO debe contener caracteres del alfabeto ni símbolos ***\n")
+                menuDescifrado()
+            elif(resultadoEntrada=="-2"):       
+                print("\n*** Se ha producido un ERROR: La palabra o frase SOLO debe contener caracteres numéricos en pares ***\n")
+                menuDescifrado()
+            else:
+                print("La frase o palabra descifrada es la siguiente: " + descifrarCodigoTelefonico(resultadoEntrada))
+                input("\n<--Presione la tecla \"Enter\" para continuar...")
+                menuDescifrado()
+        elif (opcion == 8):
+            print("\n\t---------------------")
+            print("\t   Cifrado Binario")
+            print("\t-----------------------")
+
+            resultadoEntrada = validarEntradaBinario()
+            if(resultadoEntrada=="-1"):       
+                print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase ***\n")
+                menuDescifrado()
+            elif(resultadoEntrada=="-2"):       
+                print("\n*** Se ha producido un ERROR: La palabra o frase SOLO debe contener caracteres numéricos como 1 o 0 y el simbolo \"*\"  ***\n")
+                menuDescifrado()
+            else:
+                print("La frase o palabra descifrada es la siguiente: " + descifrarBinario(resultadoEntrada))
+                input("\n<--Presione la tecla \"Enter\" para continuar...")
+                menuDescifrado()
+        elif (opcion == 9):
+                print("\n\t»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»")
+                print("\t»Regresando al Menu Principal»")
+                print("\t»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»\n")
+                menuPrincipal()
+        else:
+            print("\t***************************************")
+            print("\t*Opcion no valida, vuelva a intentarlo*")
+            print("\t***************************************")
+            menuDescifrado()
+
+>>>>>>> parent of 2a5cc47... Embellecimiento de decifrado
 
 # --------------------------------------------Menu Principal----------------------------------------------------------------------------
 '''

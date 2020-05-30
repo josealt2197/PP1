@@ -987,7 +987,7 @@ def menuCifrado():
                     print("\n\t***********************************************************************************************") 
                 else:
                     clave = input("<--Digite la clave requerida para cifrar la palabra/frase: ")
-                    resultadoClave = validarClaveVigenere(clave)
+                    resultadoClave = validarClaveVigenére(clave)
                     if(resultadoClave=="-1"):       
                         print("\n\t**************************************************************************")
                         print("\t*Se ha producido un ERROR: Es necesario que ingrese un valor para la clave*")
@@ -1211,7 +1211,7 @@ def menuDescifrado():
                     print("\t**************************************************************************************************")
 
                 else:
-                    resultadoClave = validarClaveVigenere()
+                    resultadoClave = validarClaveVigenére()
                     if(resultadoClave=="-1"):
                         print("\t****************************************************************************")
                         print("\t*Se ha producido un ERROR: Es necesario que ingrese una valor para la clave*")

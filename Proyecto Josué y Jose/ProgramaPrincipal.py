@@ -1132,9 +1132,9 @@ def menuDescifrado():
         try:
             opcion = int(input("\n<--Opcion: "))
         except:
-            print("\t***************************************")
-            print("\t*Opcion no valida, vuelva a intentarlo*")
-            print("\t***************************************")
+            print("\t*****************************************")
+            print("\t* Opcion no valida, vuelva a intentarlo *")
+            print("\t*****************************************")
             menuDescifrado()
 
         print("\n")
@@ -1150,14 +1150,14 @@ def menuDescifrado():
 
                 resultadoEntrada = validarEntradaABC(cadena)
                 if(resultadoEntrada=="-1"):
-                    print("\t***************************************************************************************")
-                    print("\t*Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase*")
-                    print("\t***************************************************************************************")
+                    print("\t****************************************************************************************")
+                    print("\t* Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase *")
+                    print("\t****************************************************************************************")
 
                 elif(resultadoEntrada=="-2"):
-                    print("\t*******************************************************************************************************")
-                    print("\t*Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos*")
-                    print("\t*******************************************************************************************************")
+                    print("\t**************************************************************************************************")
+                    print("\t* Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos *")
+                    print("\t**************************************************************************************************")
                 else:
                     print("La frase o palabra descifrada es la siguiente: " + cifrarDescifrarCesar("descifrado", resultadoEntrada))
                     input("\n<--Presione la tecla \"Enter\" para continuar...")
@@ -1168,26 +1168,26 @@ def menuDescifrado():
 
                 resultadoEntrada = validarEntradaABC(cadena)
                 if(resultadoEntrada=="-1"):
-                    print("\t**********************************************************************************************")
-                    print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase ***\n")
-                    print("\t**********************************************************************************************")
+                    print("\t***************************************************************************************")
+                    print("\t*Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase *")
+                    print("\t***************************************************************************************")
 
                 elif(resultadoEntrada=="-2"):
-                    print("\t******************************************************************************************************")
-                    print("\n*** Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos ***\n")
-                    print("\t******************************************************************************************************")
+                    print("\t*************************************************************************************************")
+                    print("\t*Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos *")
+                    print("\t*************************************************************************************************")
 
                 else:
                     resultadoClave = validarClavePorLlave()
                     if(resultadoClave=="-1"):
-                        print("\t***************************************************************************************")
-                        print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para la clave ***\n")
-                        print("\t***************************************************************************************")
+                        print("\t******************************************************************************")
+                        print("\t* Se ha producido un ERROR: Es necesario que ingrese una valor para la clave *")
+                        print("\t******************************************************************************")
 
                     elif(resultadoClave=="-2"):
-                        print("\t*********************************************************************************************************")
-                        print("\n*** Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos  ***\n")
-                        print("\t*********************************************************************************************************")
+                        print("\t***************************************************************************************************")
+                        print("\t* Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos  *")
+                        print("\t***************************************************************************************************")
 
                     else:
                         print("La frase o palabra descifrada es la siguiente: " + cifrarDescifrarPorLlave("descifrado", resultadoEntrada, resultadoClave))
@@ -1199,23 +1199,23 @@ def menuDescifrado():
 
                 resultadoEntrada = validarEntradaABC(cadena)
                 if(resultadoEntrada=="-1"):
-                    print("\t***********************************************************************************************")
-                    print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase ***\n")
-                    print("\t***********************************************************************************************")
+                    print("\t****************************************************************************************")
+                    print("\t* Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase *")
+                    print("\t****************************************************************************************")
                 elif(resultadoEntrada=="-2"):
-                    print("\t********************************************************************************************************")
-                    print("\n*** Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos ***\n")
-                    print("\t********************************************************************************************************")
+                    print("\t**************************************************************************************************")
+                    print("\t* Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos *")
+                    print("\t**************************************************************************************************")
                 else:
                     resultadoClave = validarClaveVigenere()
                     if(resultadoClave=="-1"):
-                        print("\t************************************************************************************")
-                        print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para la clave ***\n")
-                        print("\t************************************************************************************")
+                        print("\t******************************************************************************")
+                        print("\t* Se ha producido un ERROR: Es necesario que ingrese una valor para la clave *")
+                        print("\t******************************************************************************")
                     elif(resultadoClave=="-2"):
-                        print("\t****************************************************************************************")
-                        print("\n*** Se ha producido un ERROR: La palabra o frase NO debe contener letras ni símbolos ***\n")
-                        print("\t****************************************************************************************")
+                        print("\t************************************************************************************")
+                        print("\t* Se ha producido un ERROR: La palabra o frase NO debe contener letras ni símbolos *")
+                        print("\t************************************************************************************")
                     else:
                         print("La frase o palabra descifrada es la siguiente: " + cifrarDescifrarSustitucionVigenere("descifrado", resultadoEntrada, resultadoClave))
                         input("\n<--Presione la tecla \"Enter\" para continuar...")
@@ -1226,22 +1226,26 @@ def menuDescifrado():
 
                 resultadoEntrada = validarEntradaAscii()
                 if(resultadoEntrada=="-1"):
-                    print("\t********************************************************************************************")
-                    print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase ***\n")
-                    print("\t********************************************************************************************")
-                elif(resultadoEntrada=="-2"):
-                    print("\t**************************************************************************************")
-                    print("\n*** Se ha producido un ERROR: La palabra/frase solo debe contener caracteres ASCII ***\n")
                     print("\t****************************************************************************************")
+                    print("\t* Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase *")
+                    print("\t****************************************************************************************")
+                elif(resultadoEntrada=="-2"):
+                    print("\t**********************************************************************************")
+                    print("\t* Se ha producido un ERROR: La palabra/frase solo debe contener caracteres ASCII *")
+                    print("\t**********************************************************************************")
                 else:
                     print("Digite la clave requerida para cifrar la palabra/frase")
                     n = int(input("-->Ingrese el primer valor de la clave: "))
                     d = int(input("-->Ingrese el segundo valor de la clave: "))
                     resultadoClave = validarClaveRSA(n, d)
                     if(resultadoClave=="-1"):
-                        print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para los valores de n y d***\n")
+                        print("\t******************************************************************************************")
+                        print("\t* Se ha producido un ERROR: Es necesario que ingrese una valor para los valores de n y d *")
+                        print("\t******************************************************************************************")
                     elif(resultadoClave=="-2"):
-                        print("\n*** Se ha producido un ERROR: los valores de n y d deben ser dos valores enteros***\n")
+                        print("\t********************************************************************************")
+                        print("\t* Se ha producido un ERROR: los valores de n y d deben ser dos valores enteros *")
+                        print("\t********************************************************************************")
                     else:
                         print("La frase o palabra descifrada es la siguiente: " + descifrarRSA(resultadoEntrada, n, d))
                         input("\n<--Presione la tecla \"Enter\" para continuar...")
@@ -1252,13 +1256,13 @@ def menuDescifrado():
 
                 resultadoEntrada = validarEntradaAscii()
                 if(resultadoEntrada=="-1"):
-                    print("\t********************************************************************************************")
-                    print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase ***\n")
-                    print("\t********************************************************************************************")
+                    print("\t****************************************************************************************")
+                    print("\t* Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase *")
+                    print("\t****************************************************************************************")
                 elif(resultadoEntrada=="-2"):
-                    print("\t**************************************************************************************")
-                    print("\n*** Se ha producido un ERROR: La palabra/frase solo debe contener caracteres ASCII ***\n")
-                    print("\t**************************************************************************************")
+                    print("\t**********************************************************************************")
+                    print("\t* Se ha producido un ERROR: La palabra/frase solo debe contener caracteres ASCII *")
+                    print("\t**********************************************************************************")
                 else:
                     print("La frase o palabra cifrada es la siguiente: " + cifrarDescifrarPalabraInversa(resultadoEntrada))
                     input("\n<--Presione la tecla \"Enter\" para continuar...")
@@ -1269,13 +1273,13 @@ def menuDescifrado():
 
                 resultadoEntrada = validarEntradaAscii()
                 if(resultadoEntrada=="-1"):
-                    print("\t********************************************************************************************")
-                    print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase ***\n")
-                    print("\t********************************************************************************************")
+                    print("\t****************************************************************************************")
+                    print("\t* Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase *")
+                    print("\t****************************************************************************************")
                 elif(resultadoEntrada=="-2"):
-                    print("\t**************************************************************************************")
-                    print("\n*** Se ha producido un ERROR: La palabra/frase solo debe contener caracteres ASCII ***\n")
-                    print("\t**************************************************************************************")
+                    print("\t**********************************************************************************")
+                    print("\t* Se ha producido un ERROR: La palabra/frase solo debe contener caracteres ASCII *")
+                    print("\t**********************************************************************************")
                 else:
                     print("La frase o palabra cifrada es la siguiente: " + cifrarDescifrarMensajeInverso(resultadoEntrada))
                     input("\n<--Presione la tecla \"Enter\" para continuar...")
@@ -1286,17 +1290,17 @@ def menuDescifrado():
 
                 resultadoEntrada = validarEntradaNumAst()
                 if(resultadoEntrada=="-1"):
-                    print("\t********************************************************************************************")
-                    print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase ***\n")
-                    print("\t********************************************************************************************")
-                elif(resultadoEntrada=="-2"):
-                    print("\t*********************************************************************************************************")
-                    print("\n*** Se ha producido un ERROR: La palabra o frase NO debe contener caracteres del alfabeto ni símbolos ***\n")
-                    print("\t*********************************************************************************************************")
+                    print("\t****************************************************************************************")
+                    print("\t* Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase *")
+                    print("\t****************************************************************************************")
                 elif(resultadoEntrada=="-2"):
                     print("\t*****************************************************************************************************")
-                    print("\n*** Se ha producido un ERROR: La palabra o frase SOLO debe contener caracteres numéricos en pares ***\n")
+                    print("\t* Se ha producido un ERROR: La palabra o frase NO debe contener caracteres del alfabeto ni símbolos *")
                     print("\t*****************************************************************************************************")
+                elif(resultadoEntrada=="-2"):
+                    print("\t*************************************************************************************************")
+                    print("\t* Se ha producido un ERROR: La palabra o frase SOLO debe contener caracteres numéricos en pares *")
+                    print("\t*************************************************************************************************")
                 else:
                     print("La frase o palabra descifrada es la siguiente: " + descifrarCodigoTelefonico(resultadoEntrada))
                     input("\n<--Presione la tecla \"Enter\" para continuar...")
@@ -1307,13 +1311,13 @@ def menuDescifrado():
 
                 resultadoEntrada = validarEntradaBinario()
                 if(resultadoEntrada=="-1"):
-                    print("\t********************************************************************************************")
-                    print("\n*** Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase ***\n")
-                    print("\t********************************************************************************************")
+                    print("\t****************************************************************************************")
+                    print("\t* Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase *")
+                    print("\t****************************************************************************************")
                 elif(resultadoEntrada=="-2"):
-                    print("\t***************************************************************************************************************************")
-                    print("\n*** Se ha producido un ERROR: La palabra o frase SOLO debe contener caracteres numéricos como 1 o 0 y el simbolo \"*\"  ***\n")
-                    print("\t*********************************************************************************************************************+*****")
+                    print("\t**********************************************************************************************************************")
+                    print("\t*Se ha producido un ERROR: La palabra o frase SOLO debe contener caracteres numéricos como 1 o 0 y el simbolo \"*\"  *")
+                    print("\t****************************************************************************************************************+*****")
                 else:
                     print("La frase o palabra descifrada es la siguiente: " + descifrarBinario(resultadoEntrada))
                     input("\n<--Presione la tecla \"Enter\" para continuar...")
@@ -1324,9 +1328,9 @@ def menuDescifrado():
                     print("\t»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»\n")
                     menuPrincipal()
             else:
-                print("\t***************************************")
-                print("\t*Opcion no valida, vuelva a intentarlo*")
-                print("\t***************************************")
+                print("\t*****************************************")
+                print("\t* Opcion no valida, vuelva a intentarlo *")
+                print("\t*****************************************")
         
 
 # --------------------------------------------Menu Principal----------------------------------------------------------------------------

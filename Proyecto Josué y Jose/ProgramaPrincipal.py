@@ -427,7 +427,6 @@ def descifrarRSA(cadena, n, d):
         
     return cadenaResultante
 
-
 # --------------------------------------------Cifrado/Descifrado Palabra Inversa----------------------------------------------------------------------
 '''
 Cifrar o Descifrar una frase con el algoritmo de cifrado Palabra Inversa
@@ -770,12 +769,12 @@ def validarEntradaBinario(cadena):
     charBin = "01* "
 
     if (cadena==""):
-        return -1
+        return "-1"
     else:
         indice=0
         while (indice != len(cadena)):
             if(buscarCaracter(charBin, cadena[indice])==-1):
-                return -2
+                return "-2"
             indice+=1
         
         entradaValida = True
@@ -787,55 +786,66 @@ def validarEntradaNumAst(cadena):
 
     entradaValida = False 
 
-    abcAst = "123456789*"
-    asterisco = 0
+    abcAst = "0123456789*"
 
     if (cadena==""):
-        return -1
+        return "-1"
     else:
         indice=0
         while (indice != len(cadena)):
             if(buscarCaracter(abcAst, cadena[indice])==-1):
-                return -2
-            if(cadena[indice]=="*"):
-                asterisco+=1
+                return "-2"
             indice+=1
 
-        if(validarEntradaCifradoTelefonico(cadena)==-1):
-            return -3
-                
         entradaValida = True
         
     if(entradaValida == True):
         return cadena  
 
 def validarEntradaCifradoTelefonico(cadena):
+
+    abcAst = "123456789*"
+
+    if (cadena==""):
+        return "-1"
+    else:
+        indice=0
+        while (indice != len(cadena)):
+            if(buscarCaracter(abcAst, cadena[indice])==-1):
+                return "-2"
+            indice+=1
+
+    if(validarParesCifradoTelefonico(cadena)!="-1"):              
+        return cadena  
+    else:
+        return "-3"
+
+def validarParesCifradoTelefonico(cadena):
     parNumeros=""
     cadena=cadena.replace("*","")
 
     if(len(cadena)%2!=0):
-        return-1
+        return "-1"
     else:
         while (cadena != ""):
 
             parNumeros = cadena[:2]
 
-            if(buscarCaracter("10", parNumeros[0])!=-1 or buscarCaracter("0", parNumeros[1])!=-1):
-                return -1
+            if(buscarCaracter("10", parNumeros[0])!=-1 or parNumeros[1] == "0"):
+                return "-1"
             elif(buscarCaracter("234568", parNumeros[0])!=-1):
                 if(buscarCaracter("123", parNumeros[1])!=-1):
                     cadena=cadena[2:]
                 else:
-                    return -1
+                    return "-1"
             elif(buscarCaracter("79", parNumeros[0])!=-1):
                 if(buscarCaracter("1234", parNumeros[1])!=-1):
                     cadena=cadena[2:]
                 else:
-                    return -1
+                    return "-1"
             print("\ncadena"+cadena)
-            print("par"+parNumeros)
 
-        return 1
+        return "1"
 
 
 def validarClavePorLlave(clave):
@@ -887,7 +897,7 @@ def validarClaveRSA(n, d):
     elif (esEntero(n)==False or esEntero(d)==False):
         return "-2"
     else:
-        return 1
+        return "1"
     
 
 # --------------------------------------------Menu Cifrado----------------------------------------------------------------------------
@@ -1154,12 +1164,12 @@ def menuDescifrado():
                 print("\t»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»\n")
                 break
             elif(opcion>=1 and opcion<=8):
-                cadena = input("\n<--Ingrese la frase o palabra que desea cifrar: ")
+                cadena = input("\n<--Ingrese la frase o palabra que desea descifrar: ")
 
                 if (opcion == 1):
 
                     print("\n\t---------------------")
-                    print("\t    Cifrado Cesar")
+                    print("\t    Descifrado Cesar")
                     print("\t-----------------------")
 
                     resultadoEntrada = validarEntradaABC(cadena)
@@ -1177,7 +1187,7 @@ def menuDescifrado():
                         input("\n<--Presione la tecla \"Enter\" para continuar...\n")
                 elif (opcion == 2):
                     print("\n\t---------------------")
-                    print("\t  Cifrado Por Llave")
+                    print("\t  Descifrado Por Llave")
                     print("\t-----------------------")
 
                     resultadoEntrada = validarEntradaABC(cadena)
@@ -1235,18 +1245,19 @@ def menuDescifrado():
                             input("\n<--Presione la tecla \"Enter\" para continuar...\n")
                 elif (opcion == 4):
                     print("\n\t---------------------")
-                    print("\t     Cifrado RSA")
+                    print("\t     Descifrado RSA")
                     print("\t-----------------------")
 
-                    resultadoEntrada = validarEntradaAscii(cadena)
+                    resultadoEntrada = validarEntradaNumAst(cadena)
                     if(resultadoEntrada=="-1"):
                         print("\n\t**************************************************************************************")
                         print("\t*Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase*")
                         print("\t**************************************************************************************\n")
                     elif(resultadoEntrada=="-2"):
-                        print("\n\t********************************************************************************")
-                        print("\t*Se ha producido un ERROR: La palabra/frase solo debe contener caracteres ASCII*")
-                        print("\t********************************************************************************\n")
+                        print("\n\t**************************************************************************************")
+                        print("\t*Se ha producido un ERROR: La palabra o frase SOLO debe contener caracteres numéricos*") 
+                        print("\t*entre 2 y 9 (incluso) y el simbolo \"*\"                                            *")
+                        print("\t**************************************************************************************\n")
                     else:
                         print("Digite la clave requerida para cifrar la palabra/frase")
                         n = input("-->Ingrese el primer valor de la clave: ")
@@ -1261,7 +1272,7 @@ def menuDescifrado():
                             print("\t* Se ha producido un ERROR: los valores de n y d deben ser dos valores enteros*")
                             print("\t*******************************************************************************\n")
                         else:
-                            print("\n-->La frase o palabra descifrada es la siguiente: " + descifrarRSA(resultadoEntrada, n, d))
+                            print("\n-->La frase o palabra descifrada es la siguiente: " + descifrarRSA(cadena, n, d))
                             input("\n<--Presione la tecla \"Enter\" para continuar...\n")
                 elif (opcion == 5):
                     print("\n\t---------------------")
@@ -1269,6 +1280,7 @@ def menuDescifrado():
                     print("\t-----------------------")
 
                     resultadoEntrada = validarEntradaAscii(cadena)
+
                     if(resultadoEntrada=="-1"):
                         print("\n\t**************************************************************************************")
                         print("\t*Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase*")
@@ -1299,10 +1311,11 @@ def menuDescifrado():
                         input("\n<--Presione la tecla \"Enter\" para continuar...\n")
                 elif (opcion == 7):
                     print("\n\t---------------------")
-                    print("\t  Cifrado Telefónico")
+                    print("\t  Descifrado Telefónico")
                     print("\t-----------------------")
 
-                    resultadoEntrada = validarEntradaNumAst(cadena)
+                    resultadoEntrada = validarEntradaCifradoTelefonico(cadena)
+
                     if(resultadoEntrada=="-1"):
                         print("\n\t**************************************************************************************")
                         print("\t*Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase*")
@@ -1321,12 +1334,10 @@ def menuDescifrado():
                         input("\n<--Presione la tecla \"Enter\" para continuar...\n")
                 elif (opcion == 8):
                     print("\n\t---------------------")
-                    print("\t   Cifrado Binario")
+                    print("\t   Descifrado Binario")
                     print("\t-----------------------")
 
                     resultadoEntrada = validarEntradaBinario(cadena)
-
-                    print("Paso Instruc. Validación")
 
                     if(resultadoEntrada=="-1"):
                         print("\n\t**************************************************************************************")
@@ -1399,7 +1410,7 @@ def menuPrincipal():
             print("\n\t»»»»»»»»»»»»»»»»»»»»»")
             print("\t»Programa Finalizado»")
             print("\t»»»»»»»»»»»»»»»»»»»»»")
-            sys.exit(0)
+            #sys.exit(0)
         else:
             print("\t***************************************")
             print("\t*Opcion no valida, vuelva a intentarlo*")

@@ -1,5 +1,5 @@
 import sys
-from random import randint
+import random
 
 '''
                 Tecnologico de Costa Rica 
@@ -48,14 +48,12 @@ Calcular el Maximo Común Divisor de dos numeros.
         - No hay.
 '''
 def calcularMCD(a, b):
-    divisor = min(a, b)
-
-    while (divisor > 1):
-        if (a % divisor == 0 and b % divisor == 0):
-            break
-        divisor -= 1
-
-    return divisor
+    divisor = 1
+    while(divisor <= a and divisor <= b):
+        if(a % divisor == 0 and b % divisor == 0):
+            mcd = divisor
+        divisor += 1
+    return mcd
 
 
 '''
@@ -118,6 +116,15 @@ def buscarCaracter(cadena, caracter):
 
     return -1
 
+
+def invertirOrden(cadena):
+    indice=0
+    resultado=""
+    while( indice<len(cadena)):
+        letra=cadena[indice]
+        resultado=letra+resultado
+        indice+=1
+    return resultado
 
 # --------------------------------------------Cifrado/Descifrado Cesar----------------------------------------------------------------------------
 
@@ -327,77 +334,78 @@ def cifrarDescifrarLetraSustitucionVigenere(letra, operacion, clave):
 
 # --------------------------------------------Cifrado/Descifrado RSA----------------------------------------------------------------------------
 '''
-Obtener las llaves publica y privada para el cifrado RSA
+Obtener las llaves publica y privada para el cifrado RSA, llamar a la funcion de cifrado y retornar la cadena cifrada
     Entradas:
-        - Ninguna
+        - Una cadena de carateres con la frase a ser cifrada
     Salidas:
+        - El valor de la cadena cifrada con el algoritmo de cifrado RSA
         - Una Cadena de caracteres compuesta por los valores de las llaves 
-          publica (n,e ) y privada (n,d) concatenados
+          publica (n,e ) y privada (n,d) 
     Restricciones:
         - Ninguna
 '''
-def generarLlavesRSA():
-    p=randint(0,1000)
-    q=randint(0,1000)
+def cifrarRSA(cadena):
+    p=random.randint(1,1000)
+    q=random.randint(1,1000)
     n=0
     fiDeN=0
     e=0
     d=0
 
+    #Paso 1
     while(esPrimo(p)!=True and esPrimo(q)!=True):
-        p=randint(0,1000)
-        q=randint(0,1000)
-
+        p=random.randint(1,1000)
+        q=random.randint(1,1000)
+    
+    #Paso 2
     n=p*q
-
+    
+    #Paso 3
     fiDeN=(p-1)*(q-1)
-
-    e=randint(3,fiDeN-2)
+    
+    #Paso 4
+    e=random.randint(3,fiDeN-2)
     while(calcularMCD(fiDeN,e)!=1):
-        e=randint(0,fiDeN)
-    print("e= "+str(e))
-
+        e=random.randint(0,fiDeN)
+    
+    #Paso 5
     d=1
-    while(((e*d) + (fiDeN * -1))!=1): 
+    x=((d*e)-1)%fiDeN
+    while(x!=0): 
         d+=1
+        x=((d*e)-1)%fiDeN
 
-    print("Llaves generadas: ")
-    print("Publica: ("+str(n)+", "+str(e)+")")
-    print("Privada: ("+str(n)+", "+str(d)+")")
+    cadenaDeRetorno = cifrarFraseRSA(cadena, n, e)
+
+    cadenaDeRetorno =  cadenaDeRetorno + "\n-->Las llaves generadas son: Publica: ("+str(n)+", "+str(e)+") y Privada: ("+str(n)+", "+str(d)+")" 
+
+    return cadenaDeRetorno
 
 '''
 Cifrar una frase con el algoritmo de cifrado RSA
     Entradas:
         - Una cadena de carateres con la frase a ser cifrada
+        - Valores de la Clave Publica (n y e)
     Salida:
         - El valor de la cadena cifrada  con el algoritmo de cifrado RSA
     Restricciones:
         - No hay.
 '''
-def cifrarRSA(cadena):
-    # print("Digite la clave publica requerida para cifrar la frase/palabra")
-    # n = int(input("-->Ingrese el primer valor de la clave: "))
-    # e = int(input("-->Ingrese el segundo valor de la clave: "))
-    n=3233
-    e=17
-    d = 2753
+def cifrarFraseRSA(cadena, n, e):
     cadenaResultante = ""
     letraResultante = ""
-    cadenaDeRetorno = ""
     indice = 0
-
-    while (indice != len(cadena)):
-        if (cadena[indice].isascii() == True):
-            letraResultante = str((ord(cadena[indice]) ** e) % n)
+    
+    while(indice != len(cadena)):
+        if(cadena[indice].isascii()==True):
+            letraResultante=(ord(cadena[indice])**e)%n
         else:
-            letraResultante = cadena[indice]
+            letraResultante=cadena[indice]
 
-        cadenaResultante = cadenaResultante + "*" + letraResultante
-        indice += 1
+        cadenaResultante = cadenaResultante + "*"+ str(letraResultante)
+        indice+=1
 
-    cadenaDeRetorno = cadenaResultante[1:] + "\n-->Llaves generadas: Publica: ("+str(n)+", "+str(e)+") y Privada: ("+str(n)+", "+str(d)+")" 
-
-    return cadenaDeRetorno
+    return cadenaResultante[1:]
 
 '''
 Desifrar una frase con el algoritmo de cifrado RSA
@@ -413,9 +421,8 @@ def descifrarRSA(cadena, n, d):
     d=int(d)
     cadenaResultante = ""
     letrasSeparadas = cadena.split("*")
-    letraCifrada = ""
+    letraResultante = ""
     indice = 0
-    
     while(indice != len(letrasSeparadas)):
         if(esEntero(letrasSeparadas[indice])==True):
             letraResultante=chr( ( int(letrasSeparadas[indice])**d )%n )
@@ -439,17 +446,19 @@ Cifrar o Descifrar una frase con el algoritmo de cifrado Palabra Inversa
         - No hay.
 '''
 def cifrarDescifrarPalabraInversa(cadena):
-    palabras = cadena.split()
-    palabra = ""
-    cadenaCifrada = ""
-    contador = 0
+    cadena=cadena+" "
+    palabra=""
+    cadNueva=""
+    while(cadena!=""):
+        if(cadena[0]!=" "):
+            palabra=palabra+cadena[0]
+        else:
+            cadNueva=cadNueva+" "+invertirOrden(palabra)
+            palabra=""
+        cadena=cadena[1:]
+    
+    return cadNueva[1:]
 
-    while (contador < len(palabras)):
-        palabra = palabras[contador]
-        cadenaCifrada = cadenaCifrada + palabra[::-1] + " "
-        contador += 1
-
-    return cadenaCifrada
 
 
 # --------------------------------------------Cifrado/Descifrado Mensaje Inverso----------------------------------------------------------------------------
@@ -464,8 +473,7 @@ Cifrar o Descifrar una frase con el algoritmo de cifrado Mensaje Inverso
         - No hay.
 '''
 def cifrarDescifrarMensajeInverso(cadena):
-    cadenaDescifrada = cadena[::-1]
-    indice = 0
+    cadenaDescifrada = invertirOrden(cadena)
 
     return cadenaDescifrada
 
@@ -843,8 +851,6 @@ def validarParesCifradoTelefonico(cadena):
                     cadena=cadena[2:]
                 else:
                     return "-1"
-            print("\ncadena"+cadena)
-
         return "1"
 
 
@@ -1260,8 +1266,8 @@ def menuDescifrado():
                         print("\t**************************************************************************************\n")
                     else:
                         print("Digite la clave requerida para cifrar la palabra/frase")
-                        n = input("-->Ingrese el primer valor de la clave: ")
-                        d = input("-->Ingrese el segundo valor de la clave: ")
+                        n = input("-->Ingrese el primer valor de la clave privada: ")
+                        d = input("-->Ingrese el segundo valor de la clave privada: ")
                         resultadoClave = validarClaveRSA(n, d)
                         if(resultadoClave=="-1"):
                             print("\n\t*************************************************************************")

@@ -1,4 +1,4 @@
-from random import randint
+import random
 
 '''
 Obtener las llaves publica y privada para el cifrado RSA
@@ -10,10 +10,8 @@ Obtener las llaves publica y privada para el cifrado RSA
         - Ninguna
 '''
 def generarLlavesRSA():
-    llavePublica=""
-    llavePrivada=""
-    p=randint(0,1000)
-    q=randint(0,1000)
+    p=random.randint(1,1000)
+    q=random.randint(1,1000)
     n=0
     fiDeN=0
     e=0
@@ -21,8 +19,8 @@ def generarLlavesRSA():
 
     #Paso 1
     while(esPrimo(p)!=True and esPrimo(q)!=True):
-        p=randint(0,1000)
-        q=randint(0,1000)
+        p=random.randint(1,1000)
+        q=random.randint(1,1000)
 
     print("p= "+str(p))
     print("q= "+str(q))
@@ -36,20 +34,25 @@ def generarLlavesRSA():
     print("fiDeN= "+str(fiDeN))
     
     #Paso 4
-    e=randint(0,fiDeN)
+    e=random.randint(3,fiDeN-2)
     while(calcularMCD(fiDeN,e)!=1):
-        e=randint(0,fiDeN)
+        e=random.randint(0,fiDeN)
     print("e= "+str(e))
     
     #Paso 5
+    # d=1
+    # while(((e*d) + (fiDeN * -1))!=1): 
+    #     d+=1
+    #     print(d)
     d=1
-    while(((e*d) + (fiDeN * -1))!=1): 
+    x=((d*e)-1)%fiDeN
+    while(x!=0): 
         d+=1
-        print(d)
-
+        x=((d*e)-1)%fiDeN
+        #print(d)
     print("d= "+str(d))
 
-    claves= "Llaves generadas:" "Publica: ("+str(n)+", "+str(e)+") y Privada: ("+str(n)+", "+str(d)+")" 
+    claves= [n, e, d] 
     return claves
     # print("Llaves generadas: ")
     # print("Publica: ("+str(n)+", "+str(e)+")")
@@ -66,23 +69,30 @@ def generarLlavesRSA():
 '''
 def cifrar_CodigoRSA():
     cadena=input("Ingrese la frase/palabra que desea cifrar: ")
-    print("Digite la clave publica requerida para cifrar la frase/palabra")
-    n=int(input("-->Ingrese el primer valor de la clave: "))
-    e=int(input("-->Ingrese el segundo valor de la clave: "))
+##    print("Digite la clave publica requerida para cifrar la frase/palabra")
+##    n=int(input("-->Ingrese el primer valor de la clave: "))
+##    e=int(input("-->Ingrese el segundo valor de la clave: "))
+    claves = generarLlavesRSA()
+    n = int(claves[0])
+    e = int(claves[1])
+    d = int(claves[2])
     cadenaResultante = ""
     letraResultante = ""
+    cadenaDeRetorno = ""
     indice = 0
     
     while(indice != len(cadena)):
         if(cadena[indice].isascii()==True):
-            letraResultante=str((ord(cadena[indice])**e)%n)
+            letraResultante=(ord(cadena[indice])**e)%n
         else:
             letraResultante=cadena[indice]
 
-        cadenaResultante = cadenaResultante + "*"+ letraResultante
+        cadenaResultante = cadenaResultante + "*"+ str(letraResultante)
         indice+=1
-        
-    return cadenaResultante[1:]
+
+    cadenaDeRetorno = cadenaResultante[1:] + "\n-->Llaves generadas: Publica: ("+str(n)+", "+str(e)+") y Privada: ("+str(n)+", "+str(d)+")" 
+
+    return cadenaDeRetorno    
 
 '''
     Entradas:
@@ -102,8 +112,9 @@ def descifrar_CodigoRSA():
     letrasSeparadas = cadena.split("*")
     letraCifrada = ""
     indice = 0
-    
+    print(len(letrasSeparadas))
     while(indice != len(letrasSeparadas)):
+        print(letrasSeparadas[indice])
         if(esEntero(letrasSeparadas[indice])==True):
             letraResultante=chr( ( int(letrasSeparadas[indice])**d )%n )
         else:
@@ -145,14 +156,20 @@ Calcular el Maximo Común Divisor de dos numeros.
         - No hay.
 '''
 def calcularMCD(a, b):
-    divisor = min(a,b)
-
-    while(divisor>1):
-        if(a%divisor==0 and b%divisor==0):
-            break
-        divisor-=1
-
-    return divisor
+    i = 1
+    while(i <= a and i <= b):
+        if(a % i == 0 and b % i == 0):
+            mcd = i
+        i += 1
+    return mcd
+##    divisor = min(a,b)
+##
+##    while(divisor>1):
+##        if(a%divisor==0 and b%divisor==0):
+##            break
+##        divisor-=1
+##
+##    return divisor
 
 '''
     Entradas:
@@ -211,4 +228,4 @@ def menuCifradoRSA():
         print("\t*************************************")
         menuCifradoRSA()
         
-#menuCifradoRSA()
+menuCifradoRSA()

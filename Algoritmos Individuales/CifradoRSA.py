@@ -1,4 +1,4 @@
-import random
+from random import randint 
 
 '''
 Obtener las llaves publica y privada para el cifrado RSA
@@ -10,47 +10,37 @@ Obtener las llaves publica y privada para el cifrado RSA
         - Ninguna
 '''
 def generarLlavesRSA():
-    p=random.randint(1,1000)
-    q=random.randint(1,1000)
-    n=0
-    fiDeN=0
-    e=0
-    d=0
+     #Paso 1
+    p=randint(1,999)
+    while(esPrimo(p)==False):
+        p=randint(1,999)
 
-    #Paso 1
-    while(esPrimo(p)!=True and esPrimo(q)!=True):
-        p=random.randint(1,1000)
-        q=random.randint(1,1000)
+    q=randint(1,999)
+    while(esPrimo(q)==False):
+        q=randint(1,999)
 
-    print("p= "+str(p))
-    print("q= "+str(q))
-    
     #Paso 2
     n=p*q
     print("n= "+str(n))
     
     #Paso 3
     fiDeN=(p-1)*(q-1)
-    print("fiDeN= "+str(fiDeN))
     
     #Paso 4
-    e=random.randint(3,fiDeN-2)
-    while(calcularMCD(fiDeN,e)!=1):
-        e=random.randint(0,fiDeN)
+    e=randint(3,fiDeN-2)
+    x=calcularMCD(fiDeN,e)
+    while(x!=1):
+        e=randint(3,fiDeN-2)
+        x=calcularMCD(fiDeN,e)
+
     print("e= "+str(e))
     
     #Paso 5
-    # d=1
-    # while(((e*d) + (fiDeN * -1))!=1): 
-    #     d+=1
-    #     print(d)
     d=1
-    x=((d*e)-1)%fiDeN
-    while(x!=0): 
+    y=((d*e)-1)%fiDeN
+    while(y!=0): 
         d+=1
-        x=((d*e)-1)%fiDeN
-        #print(d)
-    print("d= "+str(d))
+        y=((d*e)-1)%fiDeN
 
     claves= [n, e, d] 
     return claves
@@ -162,14 +152,6 @@ def calcularMCD(a, b):
             mcd = i
         i += 1
     return mcd
-##    divisor = min(a,b)
-##
-##    while(divisor>1):
-##        if(a%divisor==0 and b%divisor==0):
-##            break
-##        divisor-=1
-##
-##    return divisor
 
 '''
     Entradas:
@@ -190,7 +172,7 @@ def esEntero(pNum):
 
 #Menu
 def menuCifradoRSA():    
-
+    print("\n" * 100)
     print("\n\t----------------------")
     print("\t  Cifrado RSA")
     print("\t----------------------")

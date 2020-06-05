@@ -762,21 +762,20 @@ Validar que la frase a ser cifrada solamente contenga caracteres dentro del codi
         - El número de error que corresponda cada restriccion validada por la función
         - El valor de la cadena de caracteres recibida como la frase a ser cifrada
     Restricciones:
-        - No hay.
+        - Los valores ASCII de los caracteres de la cadena recibida deben hallarse entre 0 y 255.
 '''
 def validarEntradaAscii(cadena):
-    
-    entradaValida = False 
+    indice=0
 
     if (cadena==""):
         return "-1"
     else:
-        if(cadena.isascii()==True):
-            entradaValida = True
-        else:
-            return "-2"
-        
-    if(entradaValida == True):
+        while(indice!=len(cadena)):
+            if(ord(cadena[indice])<0 or ord(cadena[indice])>255):
+                
+                return "-2"
+            indice+=1
+
         return cadena   
 
 '''

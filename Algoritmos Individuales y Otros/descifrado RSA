@@ -1,0 +1,46 @@
+def descifradoRSA():
+    print("|*************************|")
+    print(      "DESCIFRADO RSA")
+    print("|***************+*********|")
+
+    mensajeCifrado=input("Indique el mensaje a descifrar: ")
+    e=input("Ingrese el valor de la clave pública: ")
+    d=input("Ingrese el valor de 'd': ")
+    n=input("Ingrese el valor de 'n': ")
+
+    resultado=""
+
+    while(mensajeCifrado!=""):
+
+        if(mensajeCifrado[0]==" "):
+            resultado=resultado+" "
+            mensajeCifrado=mensajeCifrado[1:]
+            letra=mensajeCifrado[0:4]
+            letra=determinarLetra(letra,d,n)
+            resultado=resultado+letra
+        elif(mensajeCifrado[0]=="*"):
+            mensajeCifrado=mensajeCifrado[1:]
+            letra=mensajeCifrado[0:4]
+            letra=determinarLetra(letra,d,n)
+            resultado=resultado+letra
+        else:
+            letra=mensajeCifrado[0:4]
+            letra=determinarLetra(letra,d,n)
+            resultado=resultado+letra
+        mensajeCifrado=mensajeCifrado[4:]
+
+    return resultado
+
+
+
+def determinarLetra(letra,d,n):
+
+    letra=(int(letra)**int(d))%int(n)
+    letra=chr(letra)
+    return letra
+
+
+
+
+
+

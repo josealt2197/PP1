@@ -1,5 +1,5 @@
 '''
-                Tecnologico de Costa Rica 
+                Tecnológico de Costa Rica 
 
             TI 1401 - Taller de Programación   
 
@@ -17,21 +17,21 @@
  -------------------------------------------------------------
                 ****índice de Código Fuente***
 
-     -- Funciones Adicionales...........................≈ln:42
+     -- Funciones Adicionales...........................≈ln:41
      -- Algoritmos de Cirado
         -- Cifrado/Descifrado César....................≈ln:161
         -- Cifrado/Descifrado Por Llave................≈ln:216
         -- Cifrado/Descifrado Sustitución Vigenére.....≈ln:297
         -- Cifrado/Descifrado RSA......................≈ln:367
-        -- Cifrado/Descifrado Palabra inversa..........≈ln:469
-        -- Cifrado/Descifrado Mensaje inverso..........≈ln:496
-        -- Cifrado/Descifrado Telefonico...............≈ln:513
-        -- Cifrado/Descifrado Binario..................≈ln:663
-    -- Validacion de Entradas..........................≈ln:759
+        -- Cifrado/Descifrado Palabra inversa..........≈ln:466
+        -- Cifrado/Descifrado Mensaje inverso..........≈ln:493
+        -- Cifrado/Descifrado Telefonico...............≈ln:510
+        -- Cifrado/Descifrado Binario..................≈ln:660
+    -- Validacion de Entradas..........................≈ln:756
     -- Menús de Navegación
-        -- Menu Cifrado................................≈ln:1027
-        -- Menu Descifrado.............................≈ln:1253
-        -- Menu Principal..............................≈ln:1501
+        -- Menu Cifrado................................≈ln:1022
+        -- Menu Descifrado.............................≈ln:1238
+        -- Menu Principal..............................≈ln:1475
 
   -------------------------------------------------------------
 '''
@@ -1079,9 +1079,9 @@ def menuCifrado():
                         print("\t*Se ha producido un ERROR: Es necesario que ingrese un valor para la palabra o frase*")
                         print("\t*************************************************************************************\n")
                     elif(resultadoEntrada=="-2"):
-                        print("\n\t************************************************************************************************")
-                        print("\t*Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos*")
-                        print("\t************************************************************************************************\n")  
+                        print("\n\t***************************************************************************************************************")
+                        print("\t*Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos o con acentos, ni símbolos*")
+                        print("\t***************************************************************************************************************\n")  
                     else:
                         print("\n-->La frase o palabra cifrada es la siguiente: " + cifrarDescifrarCesar("cifrado", resultadoEntrada))
                         input("\n<--Presione la tecla \"Enter\" para continuar...\n")
@@ -1097,9 +1097,9 @@ def menuCifrado():
                         print("\t*Se ha producido un ERROR: Es necesario que ingrese un valor para la palabra o frase*")
                         print("\t*************************************************************************************\n")
                     elif(resultadoEntrada=="-2"):       
-                        print("\n\t**********************************************************************************************")
-                        print("\t*Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos*")
-                        print("\t**********************************************************************************************\n")  
+                        print("\n\t***************************************************************************************************************")
+                        print("\t*Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos o con acentos, ni símbolos*")
+                        print("\t***************************************************************************************************************\n")  
                     else:
                         clave = input("<--Digite la clave requerida para cifrar la palabra/frase: ")
                         resultadoClave = validarClavePorLlave(clave)
@@ -1108,9 +1108,9 @@ def menuCifrado():
                             print("\t*Se ha producido un ERROR: Es necesario que ingrese un valor para la clave*")
                             print("\t***************************************************************************\n")
                         elif(resultadoClave=="-2"):
-                            print("\n\t**********************************************************************************************")
-                            print("\t*Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos*")
-                            print("\t************************************************************************************************\n")
+                            print("\n\t***************************************************************************************************************")
+                            print("\t*Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos o con acentos, ni símbolos*")
+                            print("\t***************************************************************************************************************\n") 
                         else:
                             print("\n-->La frase o palabra cifrada es la siguiente: " + cifrarDescifrarPorLlave("cifrado", resultadoEntrada, resultadoClave))
                             input("\n<--Presione la tecla \"Enter\" para continuar...\n")
@@ -1126,9 +1126,9 @@ def menuCifrado():
                         print("\t*************************************************************************************\n")
 
                     elif(resultadoEntrada=="-2"):
-                        print("\n\t***********************************************************************************************")       
-                        print("\t*Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos*")
-                        print("\t************************************************************************************************\n") 
+                        print("\n\t***************************************************************************************************************")
+                        print("\t*Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos o con acentos, ni símbolos*")
+                        print("\t***************************************************************************************************************\n") 
                     else:
                         clave = input("<--Digite la clave requerida para cifrar la palabra/frase: ")
                         resultadoClave = validarClaveVigenere(clave)
@@ -1202,9 +1202,9 @@ def menuCifrado():
                         print("\t*Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase*")
                         print("\t**************************************************************************************\n")
                     elif(resultadoEntrada=="-2"):  
-                        print("\n\t************************************************************************************************")     
-                        print("\t*Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos*")
-                        print("\t************************************************************************************************\n")
+                        print("\n\t***************************************************************************************************************")
+                        print("\t*Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos o con acentos, ni símbolos*")
+                        print("\t***************************************************************************************************************\n") 
                     else:
                         print("\n-->La frase o palabra cifrada es la siguiente: " + cifrarCodigoTelefonico(resultadoEntrada))
                         input("\n<--Presione la tecla \"Enter\" para continuar...\n")
@@ -1219,9 +1219,9 @@ def menuCifrado():
                         print("\t*Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase*")
                         print("\t**************************************************************************************\n") 
                     elif(resultadoEntrada=="-2"): 
-                        print("\n\t************************************************************************************************")       
-                        print("\t*Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos*")
-                        print("\t************************************************************************************************\n") 
+                        print("\n\t***************************************************************************************************************")
+                        print("\t*Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos o con acentos, ni símbolos*")
+                        print("\t***************************************************************************************************************\n") 
                     else:
                         print("\n-->La frase o palabra cifrada es la siguiente: " + cifrarBinario(resultadoEntrada))
                         input("\n<--Presione la tecla \"Enter\" para continuar...\n")       
@@ -1295,9 +1295,9 @@ def menuDescifrado():
                         print("\t**************************************************************************************\n")
 
                     elif(resultadoEntrada=="-2"):
-                        print("\n\t************************************************************************************************")
-                        print("\t*Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos*")
-                        print("\t************************************************************************************************\n")
+                        print("\n\t***************************************************************************************************************")
+                        print("\t*Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos o con acentos, ni símbolos*")
+                        print("\t***************************************************************************************************************\n") 
                     else:
                         print("\n-->La frase o palabra descifrada es la siguiente: " + cifrarDescifrarCesar("descifrado", resultadoEntrada))
                         input("\n<--Presione la tecla \"Enter\" para continuar...\n")
@@ -1312,9 +1312,9 @@ def menuDescifrado():
                         print("\t*Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase*")
                         print("\t**************************************************************************************\n")
                     elif(resultadoEntrada=="-2"):
-                        print("\n\t************************************************************************************************")
-                        print("\t*Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos*")
-                        print("\t************************************************************************************************\n")
+                        print("\n\t***************************************************************************************************************")
+                        print("\t*Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos o con acentos, ni símbolos*")
+                        print("\t***************************************************************************************************************\n") 
                     else:
                         clave = input("<--Digite la clave requerida para descifrar la palabra/frase: ")
                         resultadoClave = validarClavePorLlave(clave)
@@ -1323,9 +1323,9 @@ def menuDescifrado():
                             print("\t*Se ha producido un ERROR: Es necesario que ingrese una valor para la clave*")
                             print("\t****************************************************************************\n")
                         elif(resultadoClave=="-2"):
-                            print("\n\t**************************************************************************************")
-                            print("\t*Se ha producido un ERROR: La clave NO debe contener caracteres numéricos ni símbolos*")
-                            print("\t**************************************************************************************\n")
+                            print("\n\t***************************************************************************************************************")
+                            print("\t*Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos o con acentos, ni símbolos*")
+                            print("\t***************************************************************************************************************\n") 
                         else:
                             print("\n-->La frase o palabra descifrada es la siguiente: " + cifrarDescifrarPorLlave("descifrado", resultadoEntrada, resultadoClave))
                             input("\n<--Presione la tecla \"Enter\" para continuar...\n")
@@ -1340,9 +1340,9 @@ def menuDescifrado():
                         print("\t*Se ha producido un ERROR: Es necesario que ingrese una valor para la palabra o frase*")
                         print("\t**************************************************************************************\n")
                     elif(resultadoEntrada=="-2"):
-                        print("\n\t************************************************************************************************")
-                        print("\t*Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos ni símbolos*")
-                        print("\t************************************************************************************************\n")
+                        print("\n\t***************************************************************************************************************")
+                        print("\t*Se ha producido un ERROR: La palabra o frase NO debe contener caracteres numéricos o con acentos, ni símbolos*")
+                        print("\t***************************************************************************************************************\n") 
                     else:
                         clave = input("<--Digite la clave requerida para descifrar la palabra/frase: ")
                         resultadoClave = validarClaveVigenere(clave)
@@ -1374,7 +1374,7 @@ def menuDescifrado():
                     elif(resultadoEntrada=="-2"):
                         print("\n\t**************************************************************************************")
                         print("\t*Se ha producido un ERROR: La palabra o frase SOLO debe contener caracteres numéricos*") 
-                        print("\t*entre 2 y 9 (incluso) y el simbolo \"*\"                                            *")
+                        print("\t*entre 0 y 9 (incluso) y el simbolo \"*\"                                            *")
                         print("\t**************************************************************************************\n")
                     else:
                         print("Digite la clave requerida para cifrar la palabra/frase")
@@ -1433,7 +1433,7 @@ def menuDescifrado():
                     elif(resultadoEntrada=="-2"):
                         print("\n\t**************************************************************************************")
                         print("\t*Se ha producido un ERROR: La palabra o frase SOLO debe contener caracteres numéricos*") 
-                        print("\t*entre 2 y 9 (incluso) y el simbolo \"*\"                                            *")
+                        print("\t*entre 1 y 9 (incluso) y el simbolo \"*\"                                            *")
                         print("\t**************************************************************************************\n")
                     elif(resultadoEntrada=="-3"):
                         print("\n\t***********************************************************************************************")
